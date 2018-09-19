@@ -1,0 +1,118 @@
+<div class="top-insights">
+    <h4>Top-insights
+        <!-- <a class="aboutmore" [routerLink]="['/profiles',id,'about']">More >></a> -->
+    </h4>
+    <div class="col-md-12 col-sm-12">
+        <div class="item  col-xs-12 col-md-4 col-sm-4 {{switch}}" *ngFor="let insight of insights">
+            <div class="adds-wrapper">
+                <div class="item-list make-list">
+                    <div class="ppic">
+                        <img class="my-img img-responsive" [src]="serverURL+insight['user.user_profile.profile_pic']" onError="this.src='assets/img/avatar5.png'"
+                            alt="User Pic">
+                    </div>
+                    <div class="body">
+                        <div class="company">
+                            <a href="javascript:void(0);" title="{{insight['ticker.name']}}" (click)="selectTicker(insight.tickerId)">{{insight['ticker.name'] | titlecase}}
+                                <a href="javascript:void(0);" (click)="addwatchlist(insight.tickerId,'ticker')" data-toggle="tooltip" title="Add to watch list!">
+                                    <span *ngIf="(insight?.type != 'macro-type') && user" class="glyphicon glyphicon-plus-sign"></span>
+                                </a>
+                            </a>
+                            <a href="javascript:void(0);" *ngIf="(insight?.type === 'macro-type')" title="{{insight['sector.name']}}" (click)="selectSector(insight.sectorId)">
+                                {{insight['sector.name'] | titlecase}}
+                            </a>
+                            <a href="javascript:void(0);" *ngIf="(insight?.type === 'macro-type')" title="{{insight['currency.name']}}" (click)="selectCurrency(insight.currencyId)">
+                                {{insight['currency.name'] | titlecase}}
+                            </a>
+                            <a href="javascript:void(0);" *ngIf="(insight?.type === 'macro-type')" title="{{insight['region.name']}}" (click)="selectRegion(insight.regionId)">
+                                {{insight['region.name'] | titlecase}}
+                            </a>
+                            <ng-container *ngFor="let mtype of ['sector','currency','region']">
+                                <a href="javascript:void(0);" *ngIf="insight[mtype+'Id']" (click)="addwatchlist(insight[mtype+'Id'],mtype)" data-toggle="tooltip"
+                                    title="Add to watch list!">
+                                    <span *ngIf="(insight?.type === 'macro-type') && user" class="glyphicon glyphicon-plus-sign"></span>
+                                </a>
+                            </ng-container>
+                        </div>
+                        <div class="username">
+                            <a href="javascript:void(0);" *ngIf='(switch === "grid-item")' (click)="selectUser(insight.userId)">{{insight['user.Name']}}/</a>
+                            <span class="icon-title">{{insight['commodity.name']}}</span>
+                            <a *ngIf="(insight?.type === 'macro-type')" href="javascript:void(0);" title="{{insight.macro_type}}">{{insight.macro_type| titlecase }}</a>
+                            <a href="javascript:void(0);" (click)="addwatchlist(insight.userId,'analyst')" data-toggle="tooltip" title="Add to watch list!">
+                                <span *ngIf="user" class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </div>
+                        <div class="helpinfo myclass">
+                            <div class="help-icon">
+                                <h5>
+                                </h5>
+                                <span class="head-icon">
+                                    <i class="fa fa-bolt" *ngIf="insight.type == 'quick-note'"></i>
+                                    <i class="fa fa-book" *ngIf="insight.type == 'In-depth'"></i>
+                                    <i class="fa fa-cubes" *ngIf="insight.type == 'macro-type'"></i>
+                                </span>
+                            </div>
+                            <div class="de">
+                                <div class="desc">
+                                    <a [routerLink]='["/preview",insight.id]'>
+                                        <p class="title"><b title="{{insight.headline}}">{{insight.headline | titlecase }}</b></p>
+                                        <p>
+                                            <span class="date" *ngIf="insight['insights_view.viewCount'] != 0">
+                                                ({{insight['insights_view.viewCount']}} views)
+                                            </span>
+                                            <span class="date" *ngIf="insight['insight_comment.commentCount'] != 0">
+                                                /({{insight['insight_comment.commentCount']}} comments)
+                                            </span>
+                                            <span [innerHTML]="_utils.getFewWords(_utils.stripTags(insight.summary))"></span>
+                                        </p>
+                                    </a>
+                                </div>
+                                <div class="created-date">
+                                    <div class="date pull-right">
+                                        <i class="fa fa-fw fa-clock-o"></i>
+                                        {{_utils.toUserFriendlyDate(insight.createdAt)}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="share-button">
+                        <div class="dropdown">
+                            <button type="button" data-toggle="dropdown" class="btn dropbtn">
+                                <i class="fa fa-lg fa-share-alt "></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-content">
+                                <share-buttons [include]="['twitter','google','linkedin','facebook']" [size]="1" [autoSetMeta]="false" [url]="baseURI+'/insights/preview/'+insight.id">
+                                </share-buttons>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn" *ngIf="(user)">
+                            <a href="javascript:void(0);" (click)="addwatchlist(insight.id,'insight')" data-toggle="tooltip" title="add to watch list!">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </a>
+                        </button>
+                        <button type="button" class="btn">
+                            <a href="javascript:void(0);" (click)="addFollowers(insight.userId)" data-toggle="tooltip" title="Follow the User">
+                                <i class="fa fa-rss" aria-hidden="true"></i>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="col-md-12 col-sm-12 col-xs-12 about">
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <h5>About
+            <a class="aboutmore" [routerLink]="['/company',company,'about']">More >></a>
+        </h5>
+        <hr>
+        <p [innerHTML]="_utils.getFewWords(_utils.stripTags(companydetails?.about),30)"></p>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <h5>Statistics
+            <a class="aboutmore"[routerLink]="['/company',company,'statistics']">More >></a>
+        </h5>
+        <hr>
+    </div>
+</div> -->

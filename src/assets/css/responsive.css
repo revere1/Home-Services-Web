@@ -1,0 +1,165 @@
+/* Medium Layout: 1280px. */
+@media only screen and (min-width: 992px) and (max-width: 1200px) { 
+  
+    
+}
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) { 
+
+ .address h4 {
+	font-size:18px;
+	margin:40px 0 0 0;
+}
+.address h3 {
+	font-size:24px;
+	margin:10px 0 40px 0;
+}
+.address h3 .fa-2x {
+	font-size:30px;
+}
+    
+}
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+header .intro-text form input[type="text"]{ width:100%;}
+header .intro-text form input[type="submit"]{ width:100%;margin:0px 2px;}
+.bg-Venkat {
+    background-image:none!important;
+}
+ .address h4 {
+	font-size:18px;
+	margin:40px 0 0 0;
+}
+.address h3 {
+	font-size:24px;
+	margin:10px 0 40px 0;
+}
+.address h3 .fa-2x {
+	font-size:30px;
+}
+  
+}
+/* Wide Mobile Layout: 480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) { 
+header .intro-text form input[type="text"]{ width:100%;}
+header .intro-text form input[type="submit"]{ width:100%;margin:0px 2px;}
+.modal-header {
+    padding: 11px 0px 0px 17px;
+    border-bottom: none;
+}
+.bg-Venkat {
+    background-image:none!important;
+}
+.modal-dialog {
+    width: 92%;
+}
+
+.modal-dialog {  
+    margin: 14px;
+}
+.address h4 {
+	font-size:18px;
+	margin:40px 0 0 0;
+}
+.address h3 {
+	font-size:24px;
+	margin:10px 0 40px 0;
+}
+.address h3 .fa-2x {
+	font-size:30px;
+}
+
+}
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width:320px) { 
+.navbar-brand>img {
+   
+}
+.bg-Venkat {   
+    margin-top: -10px;
+	padding-bottom: 0px;
+}
+
+.navbar-fixed-top .navbar-brand {
+    color: #f16528;
+
+	      padding: 15px 5px!important;
+}
+#submit {
+   width: 38%;
+    height: 45px;
+    padding: 8px 25px 20px 14px;
+	margin-top:20px;
+	
+
+}
+header .intro-text .intro-heading {   
+    line-height: 50px;
+}
+.bg-Venkat {
+    background-image:none!important;
+}
+.modal-title {   
+    line-height: 35px;
+    text-align: left;
+    color: #252424;
+    font-size: 29px;
+    text-transform: none;
+    font-weight: 400;
+   
+}
+.modal-content {
+    padding: 22px 0px 0px 0px; 
+	margin: 35px;
+}
+.bg-Venkat {
+    background-image: none!important;
+    margin-top: 6px;
+}
+
+}
+/* Mobile Layout: 360px. */
+@media only screen and (max-width: 360px) { 
+.bg-Venkat {   
+    margin-top: -10px;
+	padding-bottom: 0px;
+}
+.navbar-fixed-top .navbar-brand {
+    color: #f16528;
+
+	      padding:20px 5px!important;
+}
+#submit {
+   width: 38%;
+    height: 45px;
+    padding: 8px 25px 20px 14px;
+	margin-top:20px;
+	
+
+}
+header .intro-text .intro-heading {   
+    line-height: 50px;
+}
+.bg-Venkat {
+    background-image:none!important;
+}
+.modal-title {   
+    line-height: 35px;
+    text-align: left;
+    color: #252424;
+    font-size: 29px;
+    text-transform: none;
+    font-weight: 400;
+   
+}
+.modal-content {
+    padding: 22px 0px 0px 0px; 
+	margin: 35px;
+}
+.bg-Venkat {
+    background-image: none!important;
+    margin-top: 6px;
+}
+
+}

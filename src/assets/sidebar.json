@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": {
+            "en": "Home",
+            "de": "DE_Home"
+        },
+        "routerLink": "/home",
+        "icon": "fa fa-fw fa-home"
+    },
+    {
+        "id": 2,
+        "name": {
+            "en": "Insights",
+            "de": "DE_Insights"
+        },
+        "routerLink": "/insights",
+        "icon": "fa fa-fw fa-newspaper-o"        
+    },
+    {
+        "id": 4,
+        "name": {
+            "en": "Help",
+            "de": "DE_Help"
+        },
+        "routerLink": "/auth/login",
+        "icon": "fa-users"
+    },
+    {
+        "id": 5,
+        "name": {
+            "en": "Messages",
+            "de": "DE_Messages"
+        },
+        "routerLink": "/auth/login",
+        "icon": "fa-users"
+    },
+    {
+        "id": 6,
+        "name": {
+            "en": "Locker",
+            "de": "DE_Locker"
+        },
+        "routerLink": "/auth/login",
+        "icon": "fa-briefcase"
+    },
+    {
+        "id": 8,
+        "name": {
+            "en": "Settings",
+            "de": "DE_Settings"
+        },
+        "routerLink": "/auth/login",
+        "icon": "fa-gear"
+    }
+]

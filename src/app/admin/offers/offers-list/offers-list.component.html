@@ -1,0 +1,47 @@
+<button class="btn btn-primary pull-right" [routerLink]="['/admin/offers/create']">
+  Create</button>
+<button class="btn btn-success pull-right margin-r10" (click)="download()">Export</button>
+<br>
+<br>
+<div class="table-responsive">
+  <table datatable [dtOptions]="dtOptions" class="row-border hovertable table-bordered">
+    <thead>
+      <tr>
+        <th>Offer Image</th>
+        <th>Offer Name</th>
+        <th>Offer Code</th>
+        <th>Discount_Type</th>
+        <th>Discount_Value</th>
+        <th>Limit</th>
+        <th>Limit_Value</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let offer of offers">
+        <td>
+          <img class="img-responsive" src="{{serverURL+offer.offer_img}}" style="height: 80px;width: 80px;" onError="this.src='assets/img/no-image-available.jpg'" alt="User Pic">
+        </td>
+        <td>{{ offer.offer_name }}</td>
+        <td>{{ offer.offer_code }}</td>
+        <td>{{ offer.discount_type}}</td>
+        <td>{{ offer.discount_value }}</td>
+        <td>{{ offer.limit }}</td>
+        <td>{{ offer.limit_value}}</td>
+        <td>{{ offer.status}}</td>
+        <td>
+          <a (click)="deleteProduct(offer.id)">
+            <i class="fa fa-trash"></i>
+          </a> /
+          <a [routerLink]="['/admin/offers/update',offer.id]">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="tickers?.length == 0">
+        <td colspan="3" class="no-data-available">No data!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

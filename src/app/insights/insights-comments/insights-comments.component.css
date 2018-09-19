@@ -1,0 +1,46 @@
+.avatar img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 0 none;
+    left: 0;
+    position: absolute;
+    top: 0;
+    /* border-radius: 1000px; */
+}
+.comment-name{
+    margin-left: 45px;
+    margin-bottom: 20px;
+}
+.comment-img {
+    margin-left: 51px;
+}
+
+.reply-child{
+    margin-left: 47px;
+}
+.chat-avatar .avatar {
+    width: 30px;
+}
+
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    white-space: nowrap;
+    border-radius: 1000px;
+    vertical-align: bottom;
+}
+.profile-comment
+{
+border-top: 1px solid #d1d3d4;
+}
+/* .chat {
+      width:830px;
+} */
+
+.img-blog
+{
+      top: 31px;
+    position: relative;
+}

@@ -1,0 +1,13 @@
+<div class="card">
+  <h3>Insight Providers</h3>
+  <ul class="nav nav-tabs">
+    <li class="active" [ngClass]="{'active': tabSelection == 'trending'}" (click)="select('trending')">
+      <a data-toggle="tab">Trending</a>
+    </li>
+    <li [ngClass]="{'active': tabSelection == 'new'}" (click)="select('new')">
+      <a data-toggle="tab">New</a>
+    </li>
+  </ul>
+  <app-insight-providers-new *ngIf="tabSelection == 'new'"></app-insight-providers-new>
+  <app-insight-providers-trending *ngIf="tabSelection == 'trending'"></app-insight-providers-trending>
+</div>

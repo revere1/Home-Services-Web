@@ -1,0 +1,56 @@
+
+.img-circle{
+    height: 80px;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+.card-body{
+    margin: 0 auto;
+    padding: 30px 0px 0px 40px;
+    margin-bottom: 10px;
+}
+.profile-img img {
+    margin-right: 120px;
+    /* margin: auto; */
+    margin-right: 120px;
+    width: 100px;
+    height: 80;
+    height: 100px;
+}
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #d1d3d4;
+    border-color: #d1d3d4;
+}
+td span
+{
+
+        float: right;
+
+}
+@media (min-width:320px) and (max-width:480px)
+{
+    .card-body{
+        margin-bottom: 20px;
+    }
+    .toppad
+{margin-top:50px;
+}
+.profile-img img {
+    margin: 0 auto;
+}
+}

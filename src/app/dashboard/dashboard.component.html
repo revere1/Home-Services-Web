@@ -1,0 +1,313 @@
+<nav class="navbar navbar-default">
+  <div class="m1 menu">
+    <div id="menu-center">
+      <ul class=" page">
+        <li>
+          <a href="#home">Centre Stage</a>
+        </li>
+        <li>
+          <a href="#portfolio">Latest Views</a>
+        </li>
+        <li>
+          <a href="#about">Research</a>
+        </li>
+        <li>
+          <a href="#contact">Macro</a>
+        </li>
+        <ng-container *ngFor="let previlleges of privillages">
+          <li *ngIf="previlleges.privillege === 'Revsurvey'">
+            <a href="#survey">RevSurvey</a>
+          </li>
+          <li *ngIf="previlleges.privillege === 'RevAccess'">
+            <a href="#access">RevAccess</a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid " matchHeight="wBg">
+  <div class="insights-carousel">
+    <div id="home">
+      <h4 class="carousel-heading">
+        <b>Centre Stage</b>
+      </h4>
+      <ngu-carousel #myCarousels1 [inputs]="carouselTileOne" (onMove)="onMoveData($event)" [reset]="rsts" (initData)="getCarouselData($event)">
+        <ngu-tile NguCarouselItem *ngFor="let insight of latestInsights;index as i" (mouseenter)="enter(i)" (mouseleave)="leave(i)">
+          <div class="mu">
+            <span class="imgh">
+              <img class="img-responsive" [src]="_utils.extractImgs(insight.summary)[0]" onError="this.src='assets/img/p1.png'" alt="User Pic">
+            </span>
+           <p class="names"><a  href="javascript:void(0);" (click)="selectUser(insight.userId)">{{insight.user.first_name}} {{insight.user.last_name}}</a></p> 
+            <div class="head">
+              <a routerLink='/insights/preview/{{insight.id}}'>
+                <h5>
+                  {{insight.headline | titlecase }}
+                </h5>
+                <p>
+                  <span [innerHTML]="_utils.getFewWords(_utils.stripTags(insight.summary),10)"></span>
+                </p>
+              </a>
+            </div>
+            <span class="date">
+              <span *ngIf="insight.insights_view?.viewCount!=null">
+                <i class="fa fa-fw fa-eye"></i>
+                {{insight.insights_view?.viewCount}}
+              </span>
+              &nbsp;
+              <span *ngIf="insight.insight_comment?.commentCount!=null">
+                <i class="fa fa-fw fa-commenting-o"></i>
+                {{insight.insight_comment?.commentCount}}
+              </span>&nbsp;
+              {{_utils.toDateString(insight.createdAt)}} 
+            </span>
+          </div>
+        </ngu-tile>
+        <a NguCarouselNext class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="icon carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        <a NguCarouselPrev class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+          <span class="icon carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </ngu-carousel>
+    </div>
+    <div id="portfolio">
+      <h4 class="carousel-heading">
+        <b>Latest Views</b>
+      </h4>
+      <ngu-carousel #myCarousels1 [inputs]="carouselTileOne" (onMove)="onMoveData($event)" [reset]="rsts" (initData)="getCarouselData($event)">
+        <ngu-tile NguCarouselItem *ngFor="let insight of latestInsights;index as i" (mouseenter)="enter(i)" (mouseleave)="leave(i)">
+          <div class="mu">
+            <span class="imgh">
+              <img class="img-responsive" [src]="_utils.extractImgs(insight.summary)[0]" onError="this.src='assets/img/p1.png'" alt="User Pic">
+            </span>
+           <p class="names"><a  href="javascript:void(0);" (click)="selectUser(insight.userId)">{{insight.user.first_name}} {{insight.user.last_name}}</a></p> 
+            <div class="head">
+              <a routerLink='/insights/preview/{{insight.id}}'>
+                <h5>
+                  {{insight.headline | titlecase }}
+                </h5>
+                <p>
+                  <span [innerHTML]="_utils.getFewWords(_utils.stripTags(insight.summary),10)"></span>
+                </p>
+              </a>
+            </div>
+            <span class="date">
+              <span *ngIf="insight.insights_view?.viewCount!=null">
+                <i class="fa fa-fw fa-eye"></i>
+                {{insight.insights_view?.viewCount}}
+              </span>
+              &nbsp;
+              <span *ngIf="insight.insight_comment?.commentCount!=null">
+                <i class="fa fa-fw fa-commenting-o"></i>
+                {{insight.insight_comment?.commentCount}}
+              </span>&nbsp;
+              {{_utils.toDateString(insight.createdAt)}} 
+            </span>
+          </div>
+        </ngu-tile>
+        <a NguCarouselNext class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="icon carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        <a NguCarouselPrev class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+          <span class="icon carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </ngu-carousel>
+    </div>
+
+        <div id="about">
+        <h4 class="carousel-heading">
+          <b>Research</b>
+        </h4>
+        <ngu-carousel #myCarousels1 [inputs]="carouselTileOne" (onMove)="onMoveData($event)" [reset]="rsts" (initData)="getCarouselData($event)">
+          <ngu-tile NguCarouselItem *ngFor="let insight of latestInsights;index as i" (mouseenter)="enter(i)" (mouseleave)="leave(i)">
+            <div class="mu">
+              <span class="imgh">
+                <img class="img-responsive" [src]="_utils.extractImgs(insight.summary)[0]" onError="this.src='assets/img/p1.png'" alt="User Pic">
+              </span>
+              <p class="names"> <a href="javascript:void(0);" (click)="selectUser(insight.userId)">{{insight.user.first_name}} {{insight.user.last_name}}</a></p> 
+              <div class="head">
+                <a routerLink='/insights/preview/{{insight.id}}'>
+                  <h5>
+                    {{insight.headline | titlecase }}
+                  </h5>
+                  <p>
+                    <span [innerHTML]="_utils.getFewWords(_utils.stripTags(insight.summary),10)"></span>
+                  </p>
+                </a>
+              </div>
+              <span class="date">
+              
+                <span *ngIf="insight.insights_view?.viewCount!=null">
+                  <i class="fa fa-fw fa-eye"></i>
+                  {{insight.insights_view?.viewCount}}
+                </span>
+                &nbsp;
+                <span *ngIf="insight.insight_comment?.commentCount!=null">
+                  <i class="fa fa-fw fa-commenting-o"></i>
+                  {{insight.insight_comment?.commentCount}}
+                </span>&nbsp;
+                {{_utils.toDateString(insight.createdAt)}} 
+              </span>
+            </div>
+          </ngu-tile>
+          <a NguCarouselNext class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+            <span class="icon carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+          <a NguCarouselPrev class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+            <span class="icon carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </ngu-carousel>
+      </div>
+      <div id="contact">
+      <h4 class="carousel-heading">
+        <b>Macro</b>
+      </h4>
+      <ngu-carousel #myCarousels1 [inputs]="carouselTileOne" (onMove)="onMoveData($event)" [reset]="rsts" (initData)="getCarouselData($event)">
+        <ngu-tile NguCarouselItem *ngFor="let researchinsight of researchlistInsights;index as i" (mouseenter)="enter(i)" (mouseleave)="leave(i)">
+          <span class="imgh">
+            <img class="img-responsive" [src]="(researchinsight.insight_img)?serverURL+researchinsight.insight_img:serverURL+researchinsight.user.user_profile.company_detail.logo" onError="this.src='assets/img/p1.png'"
+              alt="User Pic">
+          </span>
+          <div class="head">
+              <p class="names"><a  href="javascript:void(0);" (click)="selectUser(researchinsight.userId)">{{researchinsight.user.first_name}} {{researchinsight.user.last_name}}</a></p>
+
+            <a routerLink='/insights/preview/{{researchinsight.id}}'>
+              <h5>{{researchinsight.headline | titlecase }}</h5>
+              <p>
+                <span [innerHTML]="_utils.getFewWords(_utils.stripTags(researchinsight.summary),20)"></span>
+              </p>
+            </a>
+          </div>
+          <span class="date">
+         
+            <span *ngIf="researchinsight.insights_view?.viewCount!=null">
+              <i class="fa fa-fw fa-eye"></i>
+              {{researchinsight.insights_view?.viewCount}}
+            </span>
+            &nbsp;
+            <span *ngIf="researchinsight.insight_comment?.commentCount!=null">
+              <i class="fa fa-fw fa-commenting-o"></i>
+              {{researchinsight.insight_comment?.commentCount}}
+            </span>&nbsp;
+            {{_utils.toDateString(researchinsight.createdAt)}} 
+          </span>
+        </ngu-tile>
+        <a NguCarouselNext class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="icon carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        <a NguCarouselPrev class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+          <span class="icon carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <div NguCarouselPoint>
+        </div>
+      </ngu-carousel>
+    </div>
+ 
+    <div id="survey" *ngFor="let previlleges of privillages">
+      <div *ngIf="previlleges.privillege === 'Revsurvey'">
+        <h4 class="carousel-heading">
+          <b>Rev Survey</b>
+        </h4>
+        <ngu-carousel #myCarousels1 [inputs]="carouselTileOne" (onMove)="onMoveData($event)" [reset]="rsts" (initData)="getCarouselData($event)">
+          <ngu-tile NguCarouselItem *ngFor="let insight of latestInsights;index as i" (mouseenter)="enter(i)" (mouseleave)="leave(i)">
+            <div class="mu">
+              <span class="imgh">
+                <img class="img-responsive" [src]="_utils.extractImgs(insight.summary)[0]" onError="this.src='assets/img/p1.png'" alt="User Pic">
+              </span>
+              <p class="names"> <a  href="javascript:void(0);" (click)="selectUser(insight.userId)">{{insight.user.first_name}} {{insight.user.last_name}}</a></p>
+              <div class="head">
+                <a routerLink='/insights/preview/{{insight.id}}'>
+                  <h5>
+                    {{insight.headline | titlecase }}
+                  </h5>
+                  <p>
+                    <span [innerHTML]="_utils.getFewWords(_utils.stripTags(insight.summary),10)"></span>
+                  </p>
+                </a>
+              </div>
+              <span class="date">
+              
+                <span *ngIf="insight.insights_view?.viewCount!=null">
+                  <i class="fa fa-fw fa-eye"></i>
+                  {{insight.insights_view?.viewCount}}
+                </span>
+                &nbsp;
+                <span *ngIf="insight.insight_comment?.commentCount!=null">
+                  <i class="fa fa-fw fa-commenting-o"></i>
+                  {{insight.insight_comment?.commentCount}}
+                </span>&nbsp;
+                {{_utils.toDateString(insight.createdAt)}} 
+              </span>
+            </div>
+          </ngu-tile>
+          <a NguCarouselNext class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+            <span class="icon carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+          <a NguCarouselPrev class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+            <span class="icon carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </ngu-carousel>
+      </div>
+    </div>
+    <div id="access" *ngFor="let previlleges of privillages">
+      <div *ngIf="previlleges.privillege === 'RevAccess'">
+        <h4 class="carousel-heading">
+          <b>Rev Access</b>
+        </h4>
+        <ngu-carousel #myCarousels1 [inputs]="carouselTileOne" (onMove)="onMoveData($event)" [reset]="rsts" (initData)="getCarouselData($event)">
+          <ngu-tile NguCarouselItem *ngFor="let insight of latestInsights;index as i" (mouseenter)="enter(i)" (mouseleave)="leave(i)">
+            <div class="mu">
+              <span class="imgh">
+                <img class="img-responsive" [src]="_utils.extractImgs(insight.summary)[0]" onError="this.src='assets/img/p1.png'" alt="User Pic">
+              </span>
+              <p class="names"> <a  href="javascript:void(0);" (click)="selectUser(insight.userId)">{{insight.user.first_name}} {{insight.user.last_name}}</a></p>
+              <div class="head">
+                <a routerLink='/insights/preview/{{insight.id}}'>
+                  <h5>
+                    {{insight.headline | titlecase }}
+
+                  </h5>
+                  <p>
+                    <span [innerHTML]="_utils.getFewWords(_utils.stripTags(insight.summary),10)"></span>
+                  </p>
+                </a>
+              </div>
+              <span class="date">
+               
+                <span *ngIf="insight.insights_view?.viewCount!=null">
+                  <i class="fa fa-fw fa-eye"></i>
+                  {{insight.insights_view?.viewCount}}
+                </span>
+                &nbsp;
+                <span *ngIf="insight.insight_comment?.commentCount!=null">
+                  <i class="fa fa-fw fa-commenting-o"></i>
+                  {{insight.insight_comment?.commentCount}}
+                </span>&nbsp;
+                {{_utils.toDateString(insight.createdAt)}} 
+              </span>
+            </div>
+          </ngu-tile>
+          <a NguCarouselNext class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+            <span class="icon carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+          <a NguCarouselPrev class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+            <span class="icon carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </ngu-carousel>
+      </div>
+    </div>
+  </div>
+</div>

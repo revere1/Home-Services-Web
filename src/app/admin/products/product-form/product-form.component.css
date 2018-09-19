@@ -1,0 +1,15 @@
+.productimg img {
+    width: 100px;
+    height: 100px;
+}
+.product-img img{
+    height: 63px;
+    width: 63px
+}
+@media (min-width:320px) and (max-width:480px)
+{
+.panel
+{
+    margin-top: 100px;
+}
+}

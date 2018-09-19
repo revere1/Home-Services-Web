@@ -1,0 +1,26 @@
+
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+  <ul class="sidebar-menu" data-widget="tree">
+    <li *ngFor="let menuItem of sideBarMenu; let i=index" class="treeview" [routerLinkActive]="['active']">
+        
+        <a *ngIf="menuItem.routerLink; else submenu" routerLink="{{menuItem.routerLink}}" >
+            <i class="fa fa-fw {{menuItem.icon}}"></i>
+            <span> {{ menuItem.name.en }} </span>
+        </a>
+        <ng-template #submenu>
+            <a>
+                <i class="fa fa-fw {{menuItem.icon}}"></i>
+                <span> {{ menuItem.name.en }} </span>
+            </a>
+            <ul class="treeview-menu settings nav-sub-{{ menuItem.name.en }}">
+                <li *ngFor="let subItem of menuItem.sublinks; let j=index" [routerLinkActive]="['active']">
+                    <a routerLink="{{subItem.routerLink}}" >
+                        <i class="fa fa-fw {{subItem.icon}}"></i>
+                        <span> {{ subItem.name.en }} </span>
+                    </a>
+                </li>
+            </ul>         
+        </ng-template>
+    </li>   
+</ul>  
+</nav>

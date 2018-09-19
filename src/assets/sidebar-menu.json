@@ -1,0 +1,85 @@
+[
+    {
+        "id": 1,
+        "name": {
+            "en": "Home",
+            "de": "DE_Home"
+        },
+        "routerLink": "/admin/home",
+        "icon": "fa fa-fw fa-home"
+    },
+    {
+        "id": 2,
+        "name": {
+            "en": "Categories",
+            "de": "DE_Categories"
+        },
+        "routerLink": "/admin/categories",
+        "icon": "fa-list-alt"
+    },
+    {
+        "id": 3,
+        "name": {
+            "en": "Sub-Categories",
+            "de": "DE_Sub-Categories"
+        },
+        "routerLink": "/admin/sub-categories",
+        "icon": "fa-bars"
+    },
+    {
+        "id": 4,
+        "name": {
+            "en": "Products",
+            "de": "DE_Products"
+        },
+        "routerLink": "/admin/products",
+        "icon": "fa-book"
+    },
+    {
+        "id": 5,
+        "name": {
+            "en": "Offers",
+            "de": "DE_Offers"
+        },
+        "routerLink": "/admin/offers",
+        "icon": "fa-book"
+    },
+    {
+        "id": 6,
+        "name": {
+            "en": "Banners",
+            "de": "DE_Banners"
+        },
+        "routerLink": "/admin/banners",
+        "icon": "fa-file-image-o"
+    }
+    ,
+    {
+        "id": 7,
+        "name": {
+            "en": "Users",
+            "de": "DE_Users"
+        },
+        "routerLink": "/admin/users",
+        "icon": "fa-users"
+    },
+    {
+        "id": 8,
+        "name": {
+            "en": "Countries",
+            "de": "DE_Countries"
+        },
+        "routerLink": "/admin/countries",
+        "icon": "fa-flag"
+    },
+    {
+        "id": 9,
+        "name": {
+            "en": "States",
+            "de": "DE_States"
+        },
+        "routerLink": "/admin/states",
+        "icon": "fa-shield"
+    }
+   
+]

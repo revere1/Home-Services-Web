@@ -1,0 +1,50 @@
+<div class="container-fluid">  
+  <div class="panel panel-default">
+      <div class="panel-heading">
+                <h4 class="panel-title">
+                   <b>User Details</b>
+                </h4>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr>
+            <th> User Name </th>
+            <td>{{user.user_name}}</td>
+          </tr>
+          <tr>
+              <th> User Email </th>
+              <td>{{user.user_email}}</td>
+            </tr>
+        </table>
+       </div>
+  </div>
+
+  <div class="panel panel-default">
+      <div class="panel-heading">
+                <h4 class="panel-title">
+                   <b>Address List</b>
+                </h4>
+
+      </div>
+      <div class="panel-body">
+        <div class="col-md-4" *ngFor="let address of addresses;let i=index;" >
+        
+          <div style="float: left;">
+              {{i+1}}). 
+          </div>
+          <div style="float: left;margin-left: 5px;padding: 10px;" [style.background]="address.default_address?'lavender':''">
+                     
+          {{address.full_name}},<br>
+          {{address.contact_number}},<br>
+          {{address.address1}},<br>
+          {{address.address2}},<br>
+          {{address.city}} - {{address.postal_code}},<br>
+           {{address.state}}, {{address.country}}<br><br><br>
+          </div>
+        
+        </div>
+        <div class="row" *ngIf="addresses.length ==0" style="text-align: center">No address available</div>
+       </div>
+  </div>
+
+</div>

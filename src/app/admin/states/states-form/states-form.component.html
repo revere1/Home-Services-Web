@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <form [formGroup]="statesForm" (ngSubmit)="saveState()">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <b>Sub-Sector Form</b>
+        </h4>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <span class="text-muted">
+            <em>
+              <span style="color:red;">*</span> Indicates required field</em>
+          </span>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="country">Country
+              <span style="color:red;">*</span>
+            </label>
+            <select id="country" class="form-control" formControlName="country">
+              <option value=null selected>Select</option>
+              <option *ngFor="let country of countries" [value]="country.id">
+                {{country.name}}
+              </option>
+            </select>
+            <div *ngIf="formErrors.country" class="small text-danger formErrors" [innerHTML]="formErrors.country">
+            </div>
+            <label for="name">State
+              <span style="color:red;">*</span>
+            </label>
+            <input id="name" type="text" class="form-control" formControlName="name">
+            <div *ngIf="formErrors.name" class="small text-danger formErrors" [innerHTML]="formErrors.name">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="status">Status
+              <span style="color:red;">*</span>
+            </label>
+            <select id="status" type="text" class="form-control" formControlName="status">
+              <option value=null selected> select </option>
+              <option> active </option>
+              <option> inactive </option>
+            </select>
+            <div *ngIf="formErrors.status" class="small text-danger formErrors" [innerHTML]="formErrors.status">
+            </div>
+            <br>
+            <!-- Submit -->
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" [attr.disabled]="statesForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
+              <app-submitting *ngIf="submitting"></app-submitting>
+              <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
+              <!-- API submission error -->
+              <p *ngIf="error" class="mt-3 alert alert-danger">
+                <strong>Error:</strong> There was a problem submitting the form. Please try again.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

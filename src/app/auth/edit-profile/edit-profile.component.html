@@ -1,0 +1,297 @@
+<form [formGroup]="clientForm" (ngSubmit)="saveClient()">
+  <div class="form-group">
+      <span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em></span>
+    </div>  
+  <!-- First Name -->
+  <div class="col-md-12">
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="first_name">First Name <span style="color:red;">*</span></label>
+    <input
+      id="first_name"
+      type="text"
+      class="form-control"
+      formControlName="first_name">
+    <div
+      *ngIf="formErrors.first_name"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.first_name">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="last_name">Last Name <span style="color:red;">*</span></label>
+    <input
+      id="last_name"
+      type="text"
+      class="form-control"
+      formControlName="last_name">
+    <div
+      *ngIf="formErrors.last_name"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.last_name">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email <span style="color:red;">*</span></label>
+    <input
+      id="email"
+      type="email"
+      class="form-control"
+      formControlName="email">
+    <div
+      *ngIf="formErrors.email"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.email">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="contact_number">Contact Number <span style="color:red;">*</span></label>
+    <input
+      id="contact_number"
+      type="text"
+      class="form-control"
+      formControlName="contact_number">
+    <div
+      *ngIf="formErrors.contact_number"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.contact_number">
+    </div>
+  </div> 
+  <ng-template #elseBlock>
+    <div class="form-group">
+      <label for="company_name">Company Name <span style="color:red;">*</span></label>
+      <input
+        id="company_name"
+        type="text"
+        class="form-control"
+        formControlName="company_name">
+      <div
+        *ngIf="formErrors.company_name"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.company_name">
+      </div>
+    </div>
+  </ng-template>
+    <div class="form-group" *ngIf="userAcesslevel == 3;else elseBlock">
+      <label for="company_id">Company</label>
+      <select
+        id="company_id"
+        class="form-control"
+        formControlName="company_id" >
+        <option value=null selected>Select</option>
+        <option *ngFor="let company of companies" [value]="company.id">
+          {{company.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="password">Password <span style="color:red;">*</span></label>
+        <input
+          id="password"
+          type="password"
+          class="form-control"
+          formControlName="password">
+        <div
+          *ngIf="formErrors.password"
+          class="small text-danger formErrors"
+          [innerHTML]="formErrors.password">
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password <span style="color:red;">*</span></label>
+        <input
+          id="confirm_password"
+          type="password"
+          class="form-control"
+          formControlName="confirm_password">
+        <div
+          *ngIf="formErrors.confirm_password"
+          class="small text-danger formErrors"
+          [innerHTML]="formErrors.confirm_password">
+        </div>
+      </div>
+    <!-- <div class="form-group">
+        <label for="password">Password <span style="color:red;">*</span></label>
+        <input
+          id="password"
+          type="text"
+          class="form-control"
+          formControlName="password">
+        <div
+          *ngIf="formErrors.password"
+          class="small text-danger formErrors"
+          [innerHTML]="formErrors.password">
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="password">Confirm Password <span style="color:red;">*</span></label>
+          <input
+            id="password"
+            type="text"
+            class="form-control"
+            formControlName="password">
+          <div
+            *ngIf="formErrors.password"
+            class="small text-danger formErrors"
+            [innerHTML]="formErrors.password">
+          </div>
+        </div> -->
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="company_url">Company Url <span style="color:red;">*</span></label>
+        <input
+          id="company_url"
+          type="text"
+          class="form-control"
+          formControlName="company_url">
+        <div
+          *ngIf="formErrors.company_url"
+          class="small text-danger formErrors"
+          [innerHTML]="formErrors.company_url">
+        </div>
+      </div>
+
+  <div class="form-group">
+    <label for="sector_id">Sector <span style="color:red;">*</span></label>
+
+    <select
+      id="sector_id"
+      class="form-control"
+      formControlName="sector_id" (change)="sectorChange1($event.target.value)">
+      <option value>Select</option>
+      <option *ngFor="let sector of sectors" [value]="sector.id">
+        {{sector.name}} 
+      </option>
+    </select>
+    <div
+      *ngIf="formErrors.sector_id"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.sector_id">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="subsector_id">Sub Sector <span style="color:red;">*</span></label>
+    <select
+      id="subsector_id"
+      class="form-control"
+      formControlName="subsector_id">
+      <option value>Select</option>
+      <option *ngFor="let subsector of subsectors" [value]="subsector.id">
+        {{subsector.name}} 
+      </option>
+      
+    </select>
+    <div
+      *ngIf="formErrors.subsector_id"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.subsector_id">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="country_id">Country <span style="color:red;">*</span></label>
+    <select
+      id="country_id"
+      class="form-control"
+      formControlName="country_id" (change)="countryChange1($event.target.value)">
+      <option value>Select</option>
+      <option *ngFor="let country of countries" [value]="country.id">
+        {{country.name}}
+      </option>    
+    </select>
+    <div
+      *ngIf="formErrors.country_id"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.country_id">
+    </div>
+  </div>
+
+  <div class="form-group">
+      <label for="state_id">State <span style="color:red;">*</span></label>
+      <select
+        id="state_id"
+        class="form-control"
+        formControlName="state_id">
+        <option value>Select</option>
+        <option *ngFor="let state of states" [value]="state.id">
+          {{state.name}}
+        </option>
+        
+      </select>
+      <div
+        *ngIf="formErrors.state_id"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.state_id">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City <span style="color:red;">*</span></label>
+      <input
+        id="city"
+        type="text"
+        class="form-control"
+        formControlName="city">
+      <div
+        *ngIf="formErrors.city"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.city">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="zip_code">Zip Code <span style="color:red;">*</span></label>
+      <input
+        id="zip_code"
+        type="text"
+        class="form-control"
+        pattern="[0-9]*"
+        formControlName="zip_code">
+      <div
+        *ngIf="formErrors.zip_code"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.zip_code">
+      </div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="about">About<span style="color:red;">*</span></label>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <textarea id="about" 
+      class="form-control"
+      formControlName="about" ></textarea>
+    <div
+      *ngIf="formErrors.about"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.about">
+    </div>
+</div>  
+</div>
+  
+
+  <!-- Submit -->
+  <div class="form-group" style="padding-left:30%">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [attr.disabled]="clientForm.invalid || submitting ? true : null"
+      [innerText]="submitBtnText"></button>
+    <!-- <app-submitting *ngIf="submitting"></app-submitting> -->
+    <a
+      *ngIf="!submitting"
+      class="btn btn-link"
+      (click)="resetForm()"
+      tabindex="0">Reset Form</a>
+
+    <!-- API submission error -->
+    <p *ngIf="error" class="mt-3 alert alert-danger">
+      <strong>Error:</strong> There was a problem submitting the form. Please try again.
+    </p>
+  </div>
+</form>  

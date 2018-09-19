@@ -1,0 +1,285 @@
+@import url("../../../assets/css/ionicons.min.css");
+ @import url("../../../assets/css/AdminLTE.min.css");
+ @import url("../../../assets/css/_all-skins.min.css");
+ @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+ .content-wrapper {
+     background-color: #ffffff !important;
+
+}
+ .scrollable.section {
+    overflow:auto;
+}
+ .ScrollStyle {
+     max-height: 150px;
+     overflow-y: scroll;
+}
+ .msg_rep_box {
+     padding: 5px 0px;
+}
+ .home-content {
+     padding-top: 82px !important;
+     padding-left: 20px !important;
+}
+ footer {
+     left: 0;
+     bottom: 0px;
+     width: 100%;
+     border-top: 1px solid #c7c4c4;
+     color: black;
+     position: relative;
+     padding-bottom: 15px;
+}
+ .revere {
+     margin-right: 15px;
+}
+
+/* css for dropdwon   start here*/
+.dropdown-content a:hover {background-color: #fffefe}
+
+.dropdown:hover .dropdown-content {
+      display: block;
+}
+.dropdown {
+      position: relative;
+      display: inline;
+}
+
+.dropdown:hover .dropbtn {
+      background-color: #fffefe;
+}
+.dropdown-menu
+{
+  min-width: 0px;
+  margin-top: 0px;
+  background-color: #fffefe;
+  text-align: center;
+  margin-top: 10px;
+  border-color: #b3b3b3;
+}
+.dropdown-menu>li>a>.fa
+{
+  padding-left: 5px;
+}
+.dropdown-menu>li>a
+{
+  padding: 6px 0px 6px 6px;
+  background-color: #fffefe;
+}
+.dropdown-menu>li>
+{
+  padding: 0px 8px;
+  background-color: #fffefe;
+}
+.dropdown-menu>li>a:hover {
+      background-color: #fffefe;
+}
+.dropdown-user li
+{
+text-align: left;
+}
+
+
+
+/* css for dropdwon   start here*/
+.dropdown-content a:hover {background-color: #fffefe}
+
+.dropdown:hover .dropdown-content {
+      display: block;
+}
+.dropdown {
+      position: relative;
+      display: inline;
+}
+
+.dropdown:hover .dropbtn {
+      background-color: #fffefe;
+}
+.dropdown-menu
+{
+  min-width: 0px;
+  margin-top: 0px;
+  background-color: #fffefe;
+  text-align: center;
+  margin-top: 10px;
+  border-color: #b3b3b3;
+}
+.dropdown-menu>li>a>.fa
+{
+  padding-left: 5px;
+}
+.dropdown-menu>li>a
+{
+  padding: 6px 0px 6px 6px;
+  background-color: #fffefe;
+}
+.dropdown-menu>li>
+{
+  padding: 0px 8px;
+  background-color: #fffefe;
+}
+.dropdown-menu>li>a:hover {
+      background-color: #fffefe;
+}
+.navbar-nav>.profile-menu>.dropdown-menu
+{
+  width: 175px !important;
+}
+.navbar-nav>li>.dropdown-menu
+{
+  margin-top:11px;
+}
+ul.dropdown-menu.dropdown-user:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 100%;
+  right: 12px;
+  border-width: 0 12px 12px 12px;
+  border-style: solid;
+  border-color: #fff transparent;
+}
+
+.navbar-nav>.notifications-menu>.dropdown-insights
+{
+  width: 150px !important;
+}
+.navbar-nav>.notifications-menu>.dropdown-menu>li.footer>a, .navbar-nav>.messages-menu>.dropdown-menu>li.footer>a, .navbar-nav>.tasks-menu>.dropdown-menu>li.footer>a
+{
+  background-color: unset;
+  padding: 7px 10px;
+  border-bottom: 1px solid #e8e5e5;
+}
+.navbar-nav>.messages-menu>.dropdown-menu>li.header 
+{
+  background-color: unset;
+  border-bottom: 1px solid #e8e5e5;
+}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a {
+  display: block;
+  white-space: nowrap;
+  border-bottom: 1px solid #e8e5e5;
+ 
+}
+
+  .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>h5 {
+    padding: 0;
+    margin: 0 0 0 45px;
+    color: #444444;
+    font-size: 15px;
+    position: relative;
+    text-align: left;
+}
+
+
+.ScrollStyle
+{
+  padding: 0px;
+}
+.msg_rep_box1  {
+  margin: 5px 0 8px 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #888888;
+}
+.navbar-nav>li>.dropdown-insights
+{
+  margin-top:11px !important;
+}
+ul.dropdown-menu.dropdown-insights:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 100%;
+  right: 12px;
+  border-width: 0 12px 12px 12px;
+  border-style: solid;
+  border-color: #fff transparent;
+}
+
+
+
+.company {
+  color: grey;
+}
+.ppic
+{
+  float:left;
+  padding: 10px 15px 0 0;
+}
+.item-list .body {padding: 10px 0 0 50px;}
+/* .item-list .desc {overflow: hidden;max-height: 119px;position: relative;bottom: 20px;} */
+.item-list .help-icon i {margin: 0 0 0 -20px; padding-right: 7px;}
+.list-group-item .ppic {padding-left: 15px;}
+.list-group-item .myclass{ position: relative;width: 80%;bottom: 70px;height: 0px;float: right;padding: 0px;}
+.list-group-item p {max-height: 21px;overflow: hidden;max-width: 82%;text-overflow: ellipsis;white-space: nowrap;}
+.list-group-item .created-date{
+  float: right;
+  position: relative;
+  bottom: 50px;
+  /* right: 66px; */
+}
+.plus-icon:hover .glyphicon-plus
+{
+  visibility: visible;
+  color:orange;
+}
+.username:hover .glyphicon-plus
+{
+  visibility: visible;
+}
+.item:hover .share-button
+{
+  visibility: visible;
+  
+}
+.item.list-group-item .share-button
+{
+  margin-top: 5px;
+}
+/* css for dropdwon   end here*/
+ .layout-footer {
+     margin-top: 12px;
+}
+ .main-sidebar {
+     position: fixed !important;
+}
+ .main-header {
+     position: fixed !important;
+     max-height: 100px;
+     z-index: 1030;
+     width:100%;
+}
+ .mat-form-field-wrapper {
+     padding-bottom: unset !important;
+}
+ .wrapper {
+     height: auto;
+     min-height: 100%;
+     width: 100%;
+     background-color: white !important;
+}
+ @media (min-width:320px) and (max-width:480px) {
+     .home-content {
+         padding-top: 210px !important;
+         padding-left: 0px !important;
+    }
+}
+ @media (min-width: 768px) and (max-width: 1024px) {
+     .home-content {
+         padding-top: 170px !important;
+         padding-left: 0px !important;
+    }
+}
+ @media (min-width: 1281px) {
+     footer span.Copyright {
+         position: relative;
+         left: 18%;
+    }
+}
+ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+     font-family: 'Roboto', sans-serif;
+}

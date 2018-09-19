@@ -1,0 +1,33 @@
+<button class="btn btn-primary pull-right" [routerLink]="['/admin/settings/analyst-companies/create']">
+  Create</button>
+<button class="btn btn-success pull-right margin-r10" (click)="download()">Export</button>
+<br>
+<br>
+<table datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Website</th>     
+      <th>Created By</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of companies">
+      <td>{{ company.name }}</td>
+      <td>{{ company.website }}</td>  
+      <td>{{ company['user.Name']}}</td>
+      <td>
+        <a (click)="deleteTicker(company.id)">
+          <i class="fa fa-trash"></i>
+        </a> /
+        <a [routerLink]="['/admin/settings/analyst-companies/update',company.id]">
+          <i class="fa fa-pencil"></i>
+        </a>
+      </td>
+    </tr>
+    <tr *ngIf="companies?.length == 0">
+      <td colspan="3" class="no-data-available">No data!</td>
+    </tr>
+  </tbody>
+</table>

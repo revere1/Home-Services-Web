@@ -1,0 +1,35 @@
+<div>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <input type="text" class="form-control input-lg" placeholder="" aria-label="Number" matInput [formControl]="stateCtrl" [matAutocomplete]="auto">
+            <i class="glyphicon glyphicon-search"></i>
+            <mat-autocomplete #auto="matAutocomplete" matInput="autocompleteField">
+                <ng-container *ngFor="let items of searchResults">
+                    <ng-container *ngIf="items?.users">
+                        <mat-option *ngFor="let item of items.users" (onSelectionChange)="onUserSelectionChange(item)" [value]="item.id">
+                            <img style="vertical-align:middle;" aria-hidden [src]="serverURL+item.user_profile?.profile_pic" height="25" onError="this.src='assets/img/avatar5.png'"
+                                alt="User Pic" />
+                            <b>{{item.first_name | titlecase}}</b>
+                            <b>{{item.last_name | titlecase }}</b> -
+                            <span class="company">{{item.user_profile?.company_name}}</span>
+                        </mat-option>
+                    </ng-container>
+                    <ng-container *ngIf="items?.insights">
+                        <mat-option *ngFor="let item of items.insights" (onSelectionChange)="onInsSelectionChanged(item)" [value]="item.id">
+                            <i class="fa fa-fw fa-newspaper-o"></i>
+                            <b>{{item.headline | titlecase }}</b> -
+                            <span class="company">{{item.type === 'macro-type'? item.macro_type : item.ticker?.company}}</span>
+                        </mat-option>
+                    </ng-container>
+                    <ng-container *ngIf="items?.tickers">
+                        <mat-option *ngFor="let item of items.tickers" [value]="item.name" (onSelectionChange)="onTickerSelection(item)">
+                            <i class="fa fa-cube" aria-hidden="true"></i>
+                            <b>{{item.name | titlecase }}</b> -
+                            <span class="company">{{item.company}}</span>
+                        </mat-option>
+                    </ng-container>
+                </ng-container>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>

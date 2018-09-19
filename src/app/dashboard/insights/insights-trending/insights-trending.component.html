@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row myrap">
+    <ul class="listrap" *ngFor="let trendingInsight of trendingInsights; index as i">
+      <li>
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <img id="imgwidth" title="{{trendingInsight.user.first_name | titlecase}} {{trendingInsight.user.last_name | titlecase}}" [src]="serverURL+trendingInsight.user.user_profile.profile_pic" onError="this.src='assets/img/avatar5.png'"
+              class="img-square" />
+          </div>
+          <div class="col-md-10">
+            <strong>{{trendingInsight.headline | titlecase}}</strong><br>
+            <span class="date">
+              <small><i class="fa fa-fw fa-clock-o "></i></small>
+              <small>{{_utils.toDateString(trendingInsight.createdAt)}}</small>
+            </span>
+
+
+            <div class="share-button">
+                <div class="dropdown">
+                    <button type="button" data-toggle="dropdown" class="btn dropbtn">
+                        <i class="fa fa-lg fa-share-alt "></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-content">
+                        <!-- <li>
+                            <a href="#">
+                                <i class="fa fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                        </li> -->
+                        <share-buttons  
+                        [include]="['twitter','google','linkedin','facebook']"                                        
+                        [size]="1" 
+                        [autoSetMeta]="false">
+                        </share-buttons>
+                    </ul>
+                </div>
+                <button type="button" class="btn">                               
+                    <a href="javascript:void(0);"(click)="addwatchlist(insight.id,'insight')"data-toggle="tooltip" title="add to watch list!">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    </a>
+                </button>
+                <!-- <button type="button" class="btn">
+                    <i class="fa fa-code-fork" aria-hidden="true"></i>
+                </button> -->
+            </div>
+            <!-- <button *ngIf="enableShareButton == i" (click)="share(i)">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </button> -->
+            <!-- <share-buttons *ngIf="show == i" [theme]="'circles-dark'" [include]="['twitter','google','linkedin','email','copy','facebook']"
+            [show]="6" [showText]="true" [size]="1" [autoSetMeta]="false"></share-buttons> -->
+            <!-- <i class="fa fa-ellipsis-v pull-right" (click)="enableshare(i)"></i> -->
+          </div>
+        </div>
+      </li><hr>
+    </ul>
+  </div>
+</div>

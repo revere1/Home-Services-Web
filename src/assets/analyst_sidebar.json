@@ -1,0 +1,120 @@
+[
+    {
+        "id": 1,
+        "name": {
+            "en": "Home",
+            "de": "DE_Home"
+        },
+        "routerLink": "/analyst/home",
+        "icon": "fa fa-fw fa-home"
+    },    
+    {
+        "id": 2,
+        "name": {
+            "en": "Help",
+            "de": "DE_Help"
+        },
+        "routerLink": "/analyst/help",
+        "icon": "fa-dashboard"
+    },
+ 
+    {
+        "id": 3,
+        "name": {
+            "en": "Messages",
+            "de": "DE_Messages"
+        },
+        "routerLink": "/analyst/messages/read/",
+        "icon": "fa-users"
+    },
+    {
+        "id": 4,
+        "name": {
+            "en": "Locker",
+            "de": "DE_Locker"
+        },
+        "routerLink": "/analyst/lockers",
+        "icon": "fa-briefcase"
+    },
+
+  {
+        "id":5,
+        "name": {
+            "en": "Insights",
+            "de": "DE_Insights"
+        },
+        "routerLink": false,
+        "icon": "fa fa-fw fa-newspaper-o",
+        "sublinks":[
+         {
+                "id": 1,
+                "name": {
+                    "en": "All Insights",
+                    "de":  "DE_All Insights"
+                },
+                "routerLink": "/insights",
+                "icon": "fa fa-fw fa-newspaper-o"
+            },
+            {
+                "id": 2,
+                "name": {
+                    "en": "My Insights",
+                    "de": "DE_Unpublished Insights"
+                },
+                "routerLink": "/analyst/insights/my-insights",
+                "icon": "fa fa-fw fa-newspaper-o"
+            }
+                    
+        ]
+    },
+   
+
+   
+    {
+        "id": 6,
+        "name": {
+            "en": "Settings",
+            "de": "DE_Settings"
+        },
+        "routerLink": false,
+        "icon": "fa-gear",
+        "sublinks":[
+            {
+                "id": 1,
+                "name": {
+                    "en": "Profile",
+                    "de": "DE_Profile"
+                },
+                "routerLink": "/analyst/settings/profile",
+                "icon": "fa-users"
+            },
+            {
+                "id": 2,
+                "name": {
+                    "en": "Change Password",
+                    "de": "DE_Change Password"
+                },
+                "routerLink": "/analyst/settings/change-password",
+                "icon": "fa-pencil"
+            },
+            {
+                "id": 3,
+                "name": {
+                    "en": "Email",
+                    "de": "DE_Email"
+                },
+                "routerLink": "/analyst/settings/change-password",
+                "icon": "fa-envelope"
+            },
+            {
+                "id": 4,
+                "name": {
+                    "en": "Notifications",
+                    "de": "DE_Notifications"
+                },
+                "routerLink": "/analyst/settings/notifications",
+                "icon": "fa-users"
+            }          
+        ]
+    }    
+]

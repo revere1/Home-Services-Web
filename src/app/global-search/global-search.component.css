@@ -1,0 +1,39 @@
+
+
+.example-form {
+    min-width: 150px;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+}
+.company {
+  color: grey;
+}
+.glyphicon-search{
+  position: absolute;
+  top: 10px;
+  right: 25px;
+}
+.mat-input-element
+{
+  padding-left: 5px !important;
+}
+.input-lg {
+  height: 35px;
+}
+/* .mat-option {
+    height: 50px;
+    line-height: 20px;
+  } */
+  
+  /* .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  } */

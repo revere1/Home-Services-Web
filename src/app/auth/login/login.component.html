@@ -1,0 +1,39 @@
+
+<div class="login-box">
+    <div class="login-logo">
+      <a><b></b>Login</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="form-signin" novalidate autocomplete="on">
+        <div class="form-group has-feedback">
+          <input type="email" class="form-control" placeholder="Email" formControlName="email" autofocus>
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          <div class="text-danger" *ngIf="loginForm.get('email').dirty && loginForm.get('email').invalid">
+              Please enter email
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="Password" formControlName="password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          <div class="text-danger" *ngIf="loginForm.get('password').dirty && loginForm.get('password').invalid">
+              Please enter password
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
+              <a [routerLink]="['/auth/forgot-password']">I forgot my password?</a>
+          </div>
+          <!-- /.col -->
+          <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat"  [disabled]="loginForm.invalid"><i class="fa fa-fw fa-key btn__icon-left"></i>Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+  
+    </div>
+    <!-- /.login-box-body -->
+  </div>
+  <!-- /.login-box -->

@@ -1,0 +1,181 @@
+<div class="wrapper">
+  <header class="main-header" style="height: 65px;">
+    <a [routerLink]='["/home"]' class="logo">
+      <span class="logo-mini">
+      <a [routerLink]='["/admin/home"]'>
+        <img src="assets/epoojastore-in-logo.png" alt="" />
+      </a>
+      </span>
+      <span class="logo-lg" >
+        <img src="assets/img/epoojastore-in-logo.png" alt="logo" style="height: 60px;"/>
+      </span>
+    </a>
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <div class="col-md-1">
+          <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+        </div>
+        <!-- <div class="col-md-6">
+            <app-global-search></app-global-search>
+
+          </div> -->
+          <div class="col-md-11">
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <!-- <li class="dropdown notifications-menu" title="Watchlist">
+                <a [routerLink]='["/watch-list"]' class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-calendar-check-o"></i>
+                </a>
+              </li> -->
+          <!-- Messages: style can be found in dropdown.less-->
+          <!-- <li class="dropdown messages-menu" title="Messages">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-envelope-o"></i>     
+              <span class="label label-success" id="rcount">{{messagesCount}}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have <span id="rcounthead">{{messagesCount}}</span> Messages</li>
+              <li class="ScrollStyle">
+                <ul class="menu" *ngFor="let messages of messagesData; index as i"  >
+                  <li id="relistitem{{messages.mid}}" (click)="removelistitem(messages.mid)">
+                    <a>
+                      <div class="pull-left">
+                        <img [src]="serverURL+messages.profile_pic" onError="this.src='assets/img/avatar5.png'" class="img-circle"
+                          alt="User Image"> </div>
+                      <h4>{{messages.first_name}} {{messages.last_name}}
+                        <small>
+                          <i class="fa fa-clock-o"></i>
+                          {{_utils.toDateTimeString(messages.createdAt)}}
+                        </small>
+                      </h4>
+                      <p [innerHTML]="_utils.stripTags(messages.message)" class="msg_rep_box ellipses"></p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer">
+                <a [routerLink]='["/admin/messages/read/"]'>See all</a>
+              </li>
+            </ul>
+          </li> -->
+          <!-- Notifications: style can be found in dropdown.less -->
+          <!-- <li class="dropdown notifications-menu" title="Notifications">
+            <a [routerLink]='["/admin/settings/notifications"]' class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning" id="reduceNotifCount">{{notificationCount}}</span>
+            </a>
+          </li> -->
+          <!-- <li class="dropdown messages-menu" title="Help">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-question-circle"></i>
+              <span class="label label-danger" id="rehelpcount">{{problemsCount}}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have
+                <span id="rehelpcounthead">{{problemsCount}}</span> tasks</li>
+              <li>
+                <li>
+                  <ul class="ScrollStyle">
+                    <ul class="menu" *ngFor="let problems of problemsData">
+                      <li id="helpitem{{problems.problemId}}" (click)="removehelpitem(problems.problemId)">
+                        <a>
+                          <div class="pull-left">
+                            <img [src]="serverURL+problems.profile_pic" onError="this.src='assets/img/avatar5.png'" class="img-circle" alt="User Image"> </div>
+                          <h5>{{problems.first_name}} {{problems.last_name}}
+                            <small>
+                              <i class="fa fa-clock-o"></i> {{_utils.toTimeString(problemsData[0].createdAt)}}</small>
+                          </h5>
+                          <p [innerHTML]="problems.message" class="msg_rep_box1"></p>
+                        </a>
+                      </li>
+                    </ul>
+                  </ul>
+                </li>
+                <li class="footer">
+                  <a [routerLink]='["/admin/help"]'>View all tasks</a>
+                </li>
+            </ul>
+            </li> -->
+            
+
+            <li class="dropdown user user-menu profile-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img [src]="avatar" class="user-image" onError="this.src='assets/img/avatar5.png'" alt="User Image">
+                <span class="hidden-xs">{{auth.fullname() | titlecase}}</span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-user">
+                <!-- <li>
+                  <a [routerLink]="['/admin/settings/profile']">
+                    <i class="fa fa-fw fa-users"></i> My Profile</a>
+                </li> -->
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a [routerLink]="['/admin/settings/change-password']">
+                    <i class="fa fa-fw fa-pencil"></i> Change Password</a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a [routerLink]="['/auth/logout']">
+                    <i class="fa fa-power-off"></i> Logout</a>
+                </li>
+              </ul>
+            </li>
+        </ul>
+      </div>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img [src]="avatar" class="img-circle" onError="this.src='assets/img/avatar5.png'" alt="User Image"> </div>
+        <div class="pull-left info">
+          <p class="user-name">{{auth.fullname() | titlecase}}</p>
+          <a href="#">
+            <i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <app-sidebar></app-sidebar>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <section class="cntent-header">
+      <!-- <h1> Dashboard <small>Control panel</small> </h1>    
+           -->
+      <breadcrumb [allowBootstrap]="true"></breadcrumb>
+    </section>
+    <!-- Main content -->
+    <section  class="home-content">
+      <router-outlet></router-outlet>
+    </section>
+    <!-- /.content -->
+  </div>
+  
+  <!-- /.content-wrapper -->
+  <!-- <footer>
+    <div class="layout-footer">
+    <div class="pull-right revere">
+      <b>REVERE</b>
+    </div>
+    <span class="Copyright">
+    <strong>Copyright © 2018
+      <a href="https://adminlte.io">Revere</a>.</strong> All rights reserved.</span>
+      </div>
+    </footer> -->
+  <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>

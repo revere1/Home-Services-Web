@@ -1,0 +1,97 @@
+<div class="container-fluid" [formGroup]="clientForm" *ngIf="!loading">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad">
+            <div class="panel panel-default" *ngIf="!edit1">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{userprofile.first_name | titlecase}} {{userprofile.last_name | titlecase}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 " align="center">
+                            <div class="profile-img">
+                            <img class="img-fluid img-circle " [src]="dynamicImg" onError="this.src='assets/img/avatar5.png'" alt="User Pic">
+                        </div>
+                            <div class="card-body">
+                                <input type="file" #fileInput (change)="fileChangeEvent($event)" name="profile_pic" accept="image/*" placeholder="Upload file..."
+                                />
+                            </div>
+                        </div>
+                        <div class=" col-md-8 col-lg-8 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h4>Basic Information</h4>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>First Name <span>:</span></td>
+                                       
+                                        <td>{{userprofile.first_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name<span>:</span></td>
+                                        
+                                        <td>{{userprofile.last_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email<span>:</span></td>
+                                        <td>{{userprofile.email}}</td>                            
+                                        <tr>
+                                            <td>
+                                                <h4>More Information:</h4>
+                                            </td>
+                                            <td></td>
+                                        </tr>                            
+                                        <tr>
+                                            <td>Contact Number<span>:</span></td>
+                                            <td>{{userprofile.contact_number}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Company Name<span>:</span></td>
+                                            <td> {{userprofile.company_name}}</td>
+                                        </tr>                            
+                                        <tr>
+                                            <td>Company Url<span>:</span></td>
+                                            <td>{{userprofile.company_url}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sector<span>:</span></td>
+                                            <td>{{userprofile.sectorName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SubSector<span>:</span></td>
+                                            <td>{{userprofile.subsectorName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Country<span>:</span></td>
+                                            <td>{{userprofile.countryName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>State<span>:</span></td>
+                                            <td>{{userprofile.stateName}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>City<span>:</span></td>
+                                            <td>{{userprofile.city}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ZipCode<span>:</span></td>
+                                            <td>{{userprofile.zip_code}}</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <div style="padding-left:22%">
+                                <button class="btn btn-primary  pull-center" style=" padding: 5px 25px 5px 25px;" (click)=" edit()">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-12 col-lg-12" *ngIf="edit1">
+    <app-edit [event]="userprofile" (edit)='onEdit($event)' (closeForm)="close()"></app-edit>
+</div>

@@ -1,0 +1,94 @@
+[
+    {
+        "id": 1,
+        "name": {
+            "en": "Home",
+            "de": "DE_Home"
+        },
+        "routerLink": "/client/home",
+        "icon": "fa fa-fw fa-home"
+    },
+    {
+        "id": 2,
+        "name": {
+            "en": "Help",
+            "de": "DE_Help"
+        },
+        "routerLink": "/client/help",
+        "icon": "fa-dashboard"
+    },
+    {
+        "id": 2,
+        "name": {
+            "en": "Messages",
+            "de": "DE_Messages"
+        },
+        "routerLink": "/client/messages/read/",
+        "icon": "fa-dashboard"
+    },
+    {
+        "id": 3,
+        "name": {
+            "en": "Locker",
+            "de": "DE_Locker"
+        },
+        "routerLink": "/client/lockers",
+        "icon": "fa-briefcase"
+    },
+    {
+        "id": 4,
+        "name": {
+            "en": "All insights",
+            "de": "DE_All insights"
+        },
+        "routerLink": "/insights",
+        "icon": "fa fa-fw fa-newspaper-o"
+    },
+    {
+        "id": 6,
+        "name": {
+            "en": "Settings",
+            "de": "DE_Settings"
+        },
+        "routerLink": false,
+        "icon": "fa-gear",
+        "sublinks": [
+            {
+                "id": 1,
+                "name": {
+                    "en": "Profile",
+                    "de": "DE_Profile"
+                },
+                "routerLink": "/client/settings/profile",
+                "icon": "fa-users"
+            },
+            {
+                "id": 2,
+                "name": {
+                    "en": "Change Password",
+                    "de": "Change Password"
+                },
+                "routerLink": "/client/settings/change-password",
+                "icon": "fa-pencil"
+            },
+            {
+                "id": 3,
+                "name": {
+                    "en": "Email",
+                    "de": "Email"
+                },
+                "routerLink": "/client/settings/change-password",
+                "icon": "fa-envelope"
+            },
+            {
+                "id": 4,
+                "name": {
+                    "en": "Notifications",
+                    "de": "DE_Notifications"
+                },
+                "routerLink": "/client/settings/notifications",
+                "icon": "fa-users"
+            }
+        ]
+    }
+]

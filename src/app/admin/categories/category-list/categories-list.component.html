@@ -1,0 +1,43 @@
+<button class="btn btn-primary pull-right" [routerLink]="['/admin/categories/create']">Create</button>
+<!-- <button class="btn btn-success pull-right margin-r10" (click)="download()">Export</button> -->
+
+<br>
+<br>
+<div class="table-responsive">
+
+  <table datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 100px">Category Image</th>
+        <th style="width: 80px">Category</th>
+        <th style="width: 350px">Description</th>
+        <th>Created On</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>
+          <img class="img-responsive" src="{{serverURL+category.path}}" style="height: 80px;width: 80px;" onError="this.src='assets/img/no-image-available.jpg'" alt="User Pic">
+          <!-- onError="this.src='assets/img/epoojastore-in-logo.png'" -->
+        </td>
+        <td>{{category.category_name}}</td>
+        <td>{{category.category_desc}}</td>
+        <td>{{category.createdAt | date:'dd-MMM-yyyy hh:mm:ss a'}}</td>
+        <td>{{category.status}}</td>
+        <td>
+          <a (click)="deleteCategory(category.id)">
+            <i class="fa fa-trash"></i>
+          </a> /
+          <a [routerLink]="['/admin/categories/update',category.id]">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="categories?.length == 0">
+        <td colspan="3" class="no-data-available">No data!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

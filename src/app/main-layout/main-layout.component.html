@@ -1,0 +1,167 @@
+<div class=" main-header">
+  <div class="container-fluid" id="fixed-top-header">
+    <div class="row">
+      <a [routerLink]="['/home']" class="logo">
+        <span class="logo-lg">
+          <img src="assets/img/revere-logo.png" alt="logo" />
+        </span>
+      </a>
+      <nav class="navbar navbar-static-top">
+        <div class="row col-md-12">
+          <div class="col-md-12">
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <li class="dropdown notifications-menu" title="Lockers">
+                  <a [routerLink]="role ?['/'+role.toLowerCase()+'/lockers']: ['/auth/login']" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-briefcase"></i>
+                  </a>
+                </li>
+                <li class="dropdown notifications-menu" title="Insights"> 
+                  <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-fw fa-newspaper-o"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-insights">
+                    <li class="dropdown-item">
+                      <a class="dropdown-toggle" data-toggle="dropdown" [routerLink]='["/insights"]'>
+                        <i class="fa fa-fw fa-newspaper-o"></i> Insights</a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-item" >
+                      <a class="dropdown-toggle" data-toggle="dropdown" [routerLink]="role ?['/'+role.toLowerCase()+'/insights/my-insights']:['/auth/login']">
+                        <i class="fa fa-fw fa-newspaper-o"></i> My Insights</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown messages-menu" title="Messages">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="label label-success" id="rcount">{{messagesCount}}</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="header">You have
+
+                      <span id="rcounthead">{{messagesCount}}</span> Messages</li>
+                    <li>
+                      <ul class="ScrollStyle">
+                        <ul class="menu" *ngFor="let messages of messagesData; index as i">
+                          <li id="relistitem{{messages.mid}}" (click)="removelistitem(messages.mid)">
+                            <a>
+                              <div class="pull-left">
+                                <img [src]="serverURL+messages.profile_pic" onError="this.src='assets/img/avatar5.png'" class="img-circle" alt="User Image"> </div>
+                              <h4>{{messages.first_name}} {{messages.last_name}}
+                                <small>
+                                  <i class="fa fa-clock-o"></i> 5 mins</small>
+                              </h4>
+                              <p [innerHTML]="messages.message" class="msg_rep_box"></p>
+                            </a>
+                          </li>
+                        </ul>
+                      </ul>
+                    </li>
+                    <li class="footer">
+                      <a [routerLink]="role ?['/'+role.toLowerCase()+'/messages/read/']: ['/auth/login']">See All Messages</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown notifications-menu" title="Notifications">
+                  <a [routerLink]="role ?['/'+role.toLowerCase()+'/settings/notifications']: ['/auth/login']" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="label label-warning" id="reduceNotifCount">{{notificationCount}}</span>
+                  </a>
+                </li>
+                <li class="dropdown messages-menu" title="Help">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-question-circle"></i>
+                    <span class="label label-danger" id="rehelpcount">{{problemsCount}}</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="header">You have
+                      <span id="rehelpcounthead">{{problemsCount}}</span> tasks</li>
+                    <li>
+                      <li>
+                        <ul class="ScrollStyle">
+                          <ul class="menu" *ngFor="let problems of problemsData">
+                            <li id="helpitem{{problems.problemId}}" (click)="removehelpitem(problems.problemId)">
+                              <a>
+                                <div class="pull-left">
+                                  <img [src]="serverURL+problems.profile_pic" onError="this.src='assets/img/avatar5.png'" class="img-circle" alt="User Image"> </div>
+                                <h4>{{problems.first_name}} {{problems.last_name}}
+                                  <small>
+                                    <i class="fa fa-clock-o"></i> {{_utils.toTimeString(problemsData[0].createdAt)}}</small>
+                                </h4>
+                                <p [innerHTML]="problems.message" class="msg_rep_box1"></p>
+                              </a>
+                            </li>
+                          </ul>
+                        </ul>
+                      </li>
+                      <li class="footer">
+                        <a [routerLink]="role ? ['/'+role.toLowerCase()+'/help'] : ['/auth/login']">View all tasks</a>
+                      </li>
+                  </ul>
+                  </li>
+                  <li class="dropdown user user-menu" *ngIf="currentUser">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <img [src]="avatar" class="user-image" onError="this.src='assets/img/avatar5.png'" alt="User Image">
+                      <span class="hidden-xs">{{auth.fullname() | titlecase}}</span>
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user dropdwon-analyst">
+                      <li>
+                        <a [routerLink]="role ? ['/'+role.toLowerCase()+'/settings/profile'] : ['/auth/login']">
+                          <i class="fa fa-fw fa-users"></i> My Profile</a>
+                      </li>
+                      <li role="separator" class="divider"></li>
+                      <li>
+                        <a [routerLink]="role ? ['/'+role.toLowerCase()+'/settings/change-password'] : ['/auth/login']">
+                          <i class="fa fa-fw fa-pencil"></i> Change Password</a>
+                      </li>
+                      <!-- <li role="separator" class="divider"></li>
+                      <li>
+                        <a [routerLink]="role ? ['/'+role.toLowerCase()+'/settings/change-password'] : ['/auth/login']">
+                          <i class="fa fa-fw fa-envelope"></i> Email</a>
+                      </li> -->
+                      <!-- <li role="separator" class="divider"></li>
+                      <li>
+                        <a [routerLink]="role ? ['/'+role.toLowerCase()+'/settings/notifications'] : ['/auth/login']">
+                          <i class="fa fa-fw fa-users"></i> Notifications</a>
+                      </li> -->
+                      <li role="separator" class="divider"></li>
+                      <li>
+                        <a [routerLink]="['/auth/logout']">
+                          <i class="fa fa-power-off"></i> Logout</a>
+                      </li>
+                    </ul>
+                  </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="user-logo">
+        <div class="user-img">
+          <a [routerLink]="role ?['/'+role.toLowerCase()+'/home']:['/auth/login']">
+            <img alt="logo" src="assets/img/Logo.png">
+          </a>
+        </div>
+        <div class="user-search">
+          <app-global-search></app-global-search>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="bread">
+        <breadcrumb [allowBootstrap]="true"></breadcrumb>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid ">
+  <div class="row ">
+    <section class="analyst-layout">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+      <ul class="listrap" *ngFor="let newInsight of newInsights">
+        <li>
+          <div class="col-md-12">
+            <div class="col-md-1">
+                <img id="imgwidth" title="{{newInsight.user.first_name | titlecase}} {{newInsight.user.last_name | titlecase}}" [src]="serverURL+newInsight.user.user_profile.profile_pic" onError="this.src='assets/img/avatar5.png'"
+                class="img-square" />
+            </div>
+            <div class="col-md-10" [routerLink]='["/client/insights/compose/preview,newInsight.id"]'>
+              <strong>{{newInsight.headline}}</strong><br>
+              <span class="date">
+                <small><i class="fa fa-fw fa-clock-o "></i></small>
+                <small>{{_utils.toDateString(newInsight.createdAt)}}</small>
+              </span>
+            </div>
+          </div>
+        </li><hr>
+      </ul>
+    </div>
+  </div>

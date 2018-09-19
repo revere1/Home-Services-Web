@@ -1,0 +1,76 @@
+<div class="col-md-12" *ngIf="problemsData">
+  <!-- <h3 class="box-title">Read Help</h3> -->
+  <div class="box-body no-padding">
+    <div class="mailbox-read-info">
+      <h3>Subject:{{problemsData[0].subject}}</h3>
+      <h5>From:{{problemsData[0].first_name}} {{problemsData[0].last_name}}
+        <span class="mailbox-read-time pull-right">{{_utils.toDateString(problemsData[0].createdAt)}}</span>
+      </h5>
+    </div>
+    <div class="mailbox-read-message" [innerHTML]="problemsData[0].description">
+    </div>
+    <div>
+      <span class="icon-attachments" *ngFor="let problems of problemsData">
+        <div class="my" *ngIf='problems.orgName'>
+          <i class="fa fa-{{_utils.extIcon(null, problems.orgName)}}" aria-hidden="true"></i>
+          <p>
+            <a download [href]="serverURL+problems.path">{{problems.orgName}}</a>
+          </p>
+        </div>
+      </span>
+    </div>
+    <div class="comment-box" *ngIf='problemsData1.length'>
+      <div class="read-comment" infiniteScroll [infiniteScrollThrottle]="150" [infiniteScrollUpDistance]="2" [scrollWindow]="false"
+        (scrolledUp)="onScrollUp()">
+        <div>
+          <div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="blog-comment">
+                <h4 class="text-success">Comments</h4>
+                <ul class="comments {{switch}}" *ngFor="let reply of problemsData1" [ngSwitch]="reply.createdBy">
+                  <li class="clearfix" *ngSwitchCase="userid">
+                    <img [src]="serverURL+reply.profile_pic" onError="this.src='assets/img/avatar5.png'" alt="User Pic" class="comment img-responsive img-circle"
+                      alt="">
+                    <div class="mypost-comments">
+                      <p class="meta">{{_utils.toDateTimeString(reply.createdAt)}}
+                        <a href="#">You:</a> says : </p>
+                      <span class="comment-reply">
+                        <p [innerHTML]="reply.message"></p>
+                      </span>
+                    </div>
+                  </li>
+                  <li class="clearfix" *ngSwitchDefault>
+                    <img [src]="serverURL+reply.profile_pic" onError="this.src='assets/img/avatar5.png'" alt="User Pic" class="avatar" alt="">
+                    <div class="post-comments">
+                      <p class="meta">{{_utils.toDateTimeString(reply.createdAt)}}
+                        <a href="#">{{reply.first_name}} {{reply.last_name}}</a> says :</p>
+                      <p [innerHTML]="reply.message"></p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form>
+        <div class="pull-right reply-button" *ngIf="!isPushed">
+          <button class="btn btn-primary" type="button" class="btn btn-default" (click)="reply1()">
+            <i class="fa fa-reply"></i> Reply</button>
+          <br>
+          <br>
+        </div>
+        <div>
+          <div>
+            <div class=" col-md-9 col-lg-9">
+              <app-help-comments-form *ngIf="reply" [replyFor]="replyFor" (UpdateReplyId)="replyToUpdate($event)">
+              </app-help-comments-form>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- End Panel Chat -->
+    <!-- </div> -->

@@ -1,0 +1,49 @@
+<button class="btn btn-primary pull-right" [routerLink]="['/admin/products/create']">
+  Create</button>
+<button class="btn btn-success pull-right margin-r10" (click)="download()">Export</button>
+<br>
+<br>
+<div class="table-responsive">
+  <table datatable [dtOptions]="dtOptions" class="row-border hovertable table-bordered">
+    <thead>
+      <tr>
+        <th>Product Image</th>
+        <th>Product Name</th>
+        <th>Product Code</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Product delivery_days</th>
+        <th>Category</th>
+        <th>Sub_category</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>
+          <img class="img-responsive" src="{{serverURL+product.product_img}}" style="height: 80px;width: 80px;" onError="this.src='assets/img/no-image-available.jpg'" alt="User Pic">
+        </td>
+        <td>{{ product.product_name }}</td>
+        <td>{{ product.product_code }}</td>
+        <td>{{ product.cost }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.delivery_days }}</td>
+        <td>{{ product['category.category_name'] }}</td>
+        <td>{{ product['subcategory.subcategory_name']}}</td>
+        <td>{{ product.status}}</td>
+        <td>
+          <a (click)="deleteProduct(product.id)">
+            <i class="fa fa-trash"></i>
+          </a> /
+          <a [routerLink]="['/admin/products/update',product.id]">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="tickers?.length == 0">
+        <td colspan="3" class="no-data-available">No data!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

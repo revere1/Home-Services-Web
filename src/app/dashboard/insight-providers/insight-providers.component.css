@@ -1,0 +1,6 @@
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    background :white;
+    border-bottom: 3px solid #b63998;
+    /* border-bottom-color: #b63998; */
+}

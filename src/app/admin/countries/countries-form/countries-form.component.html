@@ -1,0 +1,74 @@
+<div class="container-fluid"></div>
+<form [formGroup]="countriesForm" (ngSubmit)="saveCountries()"> 
+    <div class="panel panel-default">
+                       
+        <div class="panel-heading">
+            <h4 class="panel-title">
+               <b>Sub-Sector Form</b>
+    
+            </h4>
+        </div>
+        <div class="panel-body">
+    <div class="form-group">
+        <span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em></span>
+      </div>  
+
+  <!-- Country Name -->
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="name">Name <span style="color:red;">*</span></label>
+    <input
+      id="name"
+      type="text"
+      class="form-control"
+      formControlName="name">
+    <div
+      *ngIf="formErrors.name"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.name">
+    </div>
+  </div>
+</div>
+
+  <!-- Country Status -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="status">Status <span style="color:red;">*</span></label>
+    <select
+      id="status"
+      class="form-control"
+      formControlName="status">
+      <option value=null selected>Select</option>
+      <option>active</option>
+      <option>inactive</option>
+    </select>
+    <div
+      *ngIf="formErrors.status"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.status">
+    </div>
+  </div>
+
+
+   <!-- Submit -->
+   <div class="form-group" style="padding-right:20%">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [attr.disabled]="countriesForm.invalid || submitting ? true : null"
+        [innerText]="submitBtnText"></button>
+      <app-submitting *ngIf="submitting"></app-submitting>
+      <a
+        *ngIf="!submitting"
+        class="btn btn-link"
+        (click)="resetForm()"
+        tabindex="0">Reset Form</a>
+  
+      <!-- API submission error -->
+      <p *ngIf="error" class="mt-3 alert alert-danger">
+        <strong>Error:</strong> There was a problem submitting the form. Please try again.
+      </p>
+    </div>
+  </div>
+ </div></div>
+</form>

@@ -1,0 +1,27 @@
+.panel .notifications-filter
+{
+  margin-top: -37px;
+}
+.panel-body
+{
+  padding: 0px;
+}
+@media (min-width:320px) and (max-width:480px)
+{
+  form.form-inline {
+    display: -webkit-box;
+    padding-top: 47px;
+    position: relative;
+    width: 100%;
+  }
+    .glyphicon-filter {
+  padding-top: 50px;
+}
+.notifications-filter
+{
+  margin-top: -24px;
+}
+.form-group {
+  padding-right: 10px;
+}
+}

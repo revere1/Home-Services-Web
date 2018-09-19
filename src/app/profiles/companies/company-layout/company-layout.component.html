@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="banner">
+            <div class="banner-image">
+                <img class="img-responsive" [src]="serverURL+companyDetails?.company_logo" onError="this.src='assets/img/avatar5.png'" alt="User Pic">
+            </div>
+        </div>
+        <div class="banner-info">
+            <h4>{{companyDetails?.name | titlecase}}
+                <span>
+                    <i class="fa fa-diamond"></i> Premium Services</span>
+            </h4>
+
+            <span class="material">
+                <span class="design">Equilities</span>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-2">
+        <div class="messages">
+            <!-- <button class="btn">
+                <i class="fa fa-fw fa-comment-o btn__icon-left"></i>Meassages</button> -->
+            <div class="insigh-views">
+                <span class="insig">
+                    <span class="">{{insCount}}</span>
+                    <span class="insights">Insights</span>
+                </span>
+                <span class="insig">
+                    <span class="">{{viewCount}}</span>
+                    <span class="insights">Views</span>
+                </span>
+                <span class="insig">
+                    <span class="">10</span>
+                    <span class="insights">Followers</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 col-sm-12 col-xs-12">
+        <div class="profile-tabs">
+            <div class="my-tabs">
+                <ul id="tabs" class="nav nav-tabs  user user-tabs" data-tabs="tabs">
+                    <li class="active">
+                        <a href="#overview" data-toggle="tab">
+                            <a [routerLink]="['overview']">Overview</a>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#team" data-toggle="tab">
+                            <a [routerLink]="['team']">Team</a>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" data-toggle="tab">
+                            <a [routerLink]="['about']">About</a>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#statistcs" data-toggle="tab">
+                            <a [routerLink]="['statistics']">Statistcs</a>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#insights" data-toggle="tab">
+                            <a [routerLink]="['insights']">Insights</a>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="my-tab-content" class="tab-content">
+                <div class="tab-pane" id="about">
+                    <app-company-about></app-company-about>
+                </div>
+                <div class="tab-pane" id="insights">
+                    <app-company-insights></app-company-insights>
+                </div>
+                <div class="tab-pane" id="statistcs">
+                    <div class="container-fluid">
+                        <app-company-statistics></app-company-statistics>
+                    </div>
+                </div>
+                <div class="tab-pane active" id="overview">
+                    <app-company-overview></app-company-overview>
+                    <hr>
+                </div>
+                <div class="tab-pane" id="team">
+                    <app-company-team></app-company-team>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

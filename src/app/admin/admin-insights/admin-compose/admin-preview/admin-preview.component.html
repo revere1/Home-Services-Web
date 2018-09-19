@@ -1,0 +1,84 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet">
+<div class="container">
+  <div class="finish" *ngIf="finished">
+    <p *ngIf="insightsData?.status === 'assigned'" style="color:red">This is already assiged To Editorier</p>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 ">
+        <div class="insight-profile">
+          <div class="company-insight">
+            <div class="company-name">
+              <p>{{insightsData?.ticker?.company | titlecase}}</p>
+            </div>
+            <div class="username">
+              <p>{{insightsData?.user?.first_name}} {{insightsData?.user?.last_name}}</p>
+            </div>
+          </div>
+          <div class="company-title">
+            <i class="fa fa-book"></i>
+            <span class="icon-name" [innerHTML]="insightsData?.type | titlecase"></span> /
+            <span class="icon-title">{{insightsData?.commodity?.name}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <h1 class="user-headline">
+          <div [innerHTML]="insightsData?.headline | titlecase"></div>
+        </h1>
+        <span>{{_utils.toDateString(insightsData?.createdAt)}}</span>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <h5 class="summary">Summary</h5>
+        <p class="img-resize" [innerHTML]="insightsData?.summary"></p>
+        <span *ngIf="insightsData?.insight_attachements">
+          <p *ngFor="let file of insightsData.insight_attachements">
+            <a href="{{serverURL+file.path}}" download> {{file.path | slice:47:100}}</a>
+          </p>
+        </span>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12" *ngIf="(insightsData?.type === 'In-depth')">
+
+        <h5 class="summary">Description:</h5>
+        <p class="img-resize" [innerHTML]="insightsData?.description" class="img-resize"></p>
+        <span *ngIf="insightsData?.insight_attachements">
+          <p *ngFor="let file of insightsData.insight_attachements">
+            <a href="{{serverURL+file.path}}" download> {{file.path | slice:47:100}}</a>
+          </p>
+        </span>
+      </div>
+    </div>
+
+    
+  </div>
+  <div class="row">
+    <div class="assign-form">
+    <form [formGroup]="AssignForm" class="form-signin form-horizontal" novalidate autocomplete="on" (ngSubmit)="submit(AssignForm.value)">
+      <div class="form-group  has-feedback" *ngIf="insightsData ?.status=='submitted'">
+        <label for="inputEmail" class="control-label assign col-md-2 col-sm-2 col-xs-2">Assign to a Editorier</label>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+          <select class="form-control js-data-example-ajax" id="assign-butt">
+            <option>Select</option>
+            <option *ngFor="let editorier of editoriers" value="editorier.id" selected>{{editorier.first_name}} {{editorier.last_name}}</option>
+          </select>
+        </div>
+        <div class="text-danger" *ngIf="AssignForm.get('editorierId').dirty && AssignForm.get('editorierId').invalid">
+          Please select editorierId
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <button class="btn-sm btn-primary" *ngIf="insightsData?.status === 'submitted'" [disabled]="AssignForm.invalid">Assgin</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+

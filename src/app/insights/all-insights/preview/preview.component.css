@@ -1,0 +1,348 @@
+
+
+
+.ScrollStyle
+{
+    max-height: 400px;
+ 
+    overflow-y: scroll;
+}
+
+body {
+    background: #ddd;
+    margin-top: 10px;
+}
+
+.chat-box {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden
+}
+
+.chats {
+    padding: 30px 15px
+}
+
+.chat-avatar {
+    float: right
+}
+
+/* .chat-avatar .avatar {
+    width: 30px -webkit-box-shadow : 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    box-shadow : 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+} */
+
+.chat-body {
+    display: block;
+    margin: 10px 30px 0 0;
+    overflow: hidden
+}
+
+.chat-body:first-child {
+    margin-top: 0
+}
+
+.chat-content {
+    position: relative;
+    display: block;
+    float: right;
+    padding: 8px 15px;
+    margin: 0 20px 10px 0;
+    clear: both;
+    color: #fff;
+    background-color: #62a8ea;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+.chat-content:before {
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 0;
+    height: 0;
+    content: '';
+    border: 5px solid transparent;
+    border-left-color: #62a8ea
+}
+
+.chat-content>p:last-child {
+    margin-bottom: 0
+}
+
+.chat-content+.chat-content:before {
+    border-color: transparent
+}
+
+.chat-time {
+    display: block;
+    margin-top: 8px;
+    color: rgba(255, 255, 255, .6)
+}
+
+.chat-left .chat-avatar {
+    float: left
+}
+
+.chat-left .chat-body {
+    margin-right: 0;
+    margin-left: 30px
+}
+
+.chat-left .chat-content {
+    float: left;
+    margin: 0 0 10px 20px;
+    color: #76838f;
+    background-color: #dfe9ef
+}
+
+.chat-left .chat-content:before {
+    right: auto;
+    left: -10px;
+    border-right-color: #dfe9ef;
+    border-left-color: transparent
+}
+
+.chat-left .chat-content+.chat-content:before {
+    border-color: transparent
+}
+
+.chat-left .chat-time {
+    color: #a3afb7
+}
+
+.panel-footer {
+    padding: 0 30px 15px;
+    background-color: transparent;
+    border-top: 0px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+
+.avatar img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 0 none;
+    left: 0;
+    position: absolute;
+    top: 0;
+    /* border-radius: 1000px; */
+}
+.comment-name{
+    margin-left: 45px;
+    margin-bottom: 20px;
+}
+.comment-img {
+    margin-left: 51px;
+}
+.comment-img a:hover {
+    color: #f1592a;
+}
+.comment-img a {
+    color: #000;
+}
+.border-attachments{
+    border-top: 1px solid #d1d3d4;
+    margin-top: 36px;
+    clear: both;
+}
+.chat-avatar .avatar {
+    width: 30px;
+}
+
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    white-space: nowrap;
+    border-radius: 1000px;
+    vertical-align: bottom;
+}
+
+/* .chat {
+      width:830px;
+} */
+
+.img-blog
+{
+      top: 31px;
+    position: relative;
+}
+
+  .para
+  {
+    padding-top: 10px;
+    padding-left: 70px;
+}
+
+.share-button
+{
+  
+      position: absolute;
+      top: 0px;
+      right: 15px;
+      margin-top: 10px;
+      visibility: hidden;
+
+}
+
+.database {
+      margin-bottom: 35px;
+}
+.reply-form
+{
+  padding: 10px;
+}
+
+.qucik{
+  width: 500px;
+}
+
+.preview-desc {
+width: 100%;
+max-width: 300px;
+}
+
+/* css for dropdwon   start here*/
+ .share-button
+{
+  visibility: visible;
+  
+}
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+      display: block;
+}
+.dropdown {
+      position: relative;
+      display: inline;
+}
+
+.dropdown:hover .dropbtn {
+      background-color: #dddddd;
+}
+.dropdown-menu
+{
+  min-width: 0px;
+  margin-top: 0px;
+  background-color: #dddddd;
+  text-align: center;
+  margin-top: 10px;
+}
+.dropdown-menu>li>a>.fa
+{
+  padding-left: 5px;
+}
+.dropdown-menu>li>a
+{
+  padding: 0px 8px;
+  background-color: #dddddd;
+}
+.dropdown-menu>li>
+{
+  padding: 0px 8px;
+  background-color: #dddddd;
+}
+.dropdown-menu>li>a:hover {
+      background-color: #dddddd;
+}
+.username {
+    color: #fbb040;
+  }
+.reply
+{
+    padding-left: 160px !important;
+}
+.analyst-graph
+{
+    position:fixed; 
+    /* right: 0; */
+    overflow-y: hidden;
+    height: 500px;
+    width: 100%;
+    /* max-width: 440px; */
+}
+.analyst-graph:hover
+{
+   
+    overflow-y: scroll;
+   
+}
+
+  
+.preview-header
+
+    {
+        border-top: 1pt solid #d1d3d4;
+        border-left: 1pt solid #d1d3d4;
+        border-bottom: 1pt solid #d1d3d4;
+        background-color: #d1d3d4;
+        margin-top: 3.00pt;
+    }
+    .preview-header h4 {
+        padding-left: 10px;
+    }
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+.reply
+{
+    padding-left: 70px !important;
+}
+
+  }
+
+.summary{border-top: 1px solid #dadada;border-bottom: 1px solid #dadada;padding: 10px 0px 10px 0px;border-bottom-style: dashed;border-top-style: dashed;}
+.icon-name{padding-left: 7px;padding-right: 4px;}
+.company-name{color: grey;}
+.finish{text-align: justify;margin-right: 145px;margin-left: 40px;}
+.user-name{margin-top: -8px;}
+.user-headline{font-size: 26px;}
+.fa-fw {
+    text-align: center;
+    width: 1.28571429em;
+    /* margin-right: 9px; */
+  }
+.btn-default {background-color: #f1592a;color: #fff;border-color: #f1592a;margin-right: 118px;}
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
+{background-color: #f1592a;color: #fff;border-color: #f1592a;}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .finish{margin-right: 0px;margin-left: 0px;}
+.reply
+{
+    padding-left: 70px !important;
+}
+
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .finish{margin-right: 235px;}
+    }
+
+.nav-tabs { border-bottom: 2px solid #DDD; }
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+.nav-tabs > li > a { border: none; color: #6b6968;background: #ddd; }
+    .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none;  color: #f1592a !important; background: #fff; }
+    .nav-tabs > li > a::after { content: ""; background: #f1592a; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+.nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #5a4080 none repeat scroll 0% 0%; color: #fff; }
+.tab-pane { padding: 15px 0; }
+.tab-content{padding:20px}
+.nav-tabs > li  {width:20%; text-align:center;}
+.card {background: #FFF none repeat scroll 0% 0%;}
+body{ background: #EDECEC; padding:50px}
+.continue-btn {text-align: center;margin-top: 20px}
+.form-control{margin-top: 20px}
+.reset a{color: #f1592a !important;}
+.nav-tabs .fa{margin-right: 6px;}
+
+
+@media all and (max-width:724px){
+.nav-tabs > li > a > span {display:none;}	
+.nav-tabs > li > a {padding: 5px 5px;}
+}

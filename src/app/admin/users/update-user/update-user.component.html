@@ -1,0 +1,7 @@
+
+<app-loading *ngIf="loading"></app-loading>
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+      <!-- Edit event form -->
+      <app-user-form [event]="users"></app-user-form> 
+</ng-template>

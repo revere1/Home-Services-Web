@@ -1,0 +1,28 @@
+<div *ngIf="comment" class="reply-child">
+  <div *ngFor="let d of comment.children">
+    <div class="profile-comment">
+      <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="right" title="" data-original-title="June Lane">
+        <img [src]="serverURL+d.user.user_profile.profile_pic" onError="this.src='assets/img/avatar5.png'" alt="User Pic">
+      </a>
+      <div class="comment-img">
+        <span>{{d.user.first_name}} {{d.user.last_name}}</span>
+        <small>
+          <p [innerHTML]="d.comment"></p>
+          {{_utils.toDateString(d.createdAt)}}
+        </small>
+      </div>
+      <div class="comment-name">
+        <span *ngFor="let path of d.insight_comment_attachements">
+          <i class="fa fa-{{_utils.extIcon(null, path.orgName)}}" title="{{path.orgName}}"></i>
+        </span>
+        <br>
+        <span>
+          <a href="javascript:void(0);" (click)="switchForm(d.id)">Reply</a>
+        </span>
+      </div>
+    </div>
+    <app-insights-comments-form *ngIf="showForm[d.id]" [replyFor]="replyFor" (UpdateReplyId)="replyToUpdate($event)">
+    </app-insights-comments-form>
+    <app-insights-comments *ngIf="d.children.length" [data]="d" (SelfUpdateComment)="selfUpdate($event)"></app-insights-comments>
+  </div>
+</div>

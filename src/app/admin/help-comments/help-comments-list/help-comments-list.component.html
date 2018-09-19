@@ -1,0 +1,95 @@
+<app-loading *ngIf="loading; else dataBlock"></app-loading>
+<ng-template #dataBlock>
+<h1 style="text-align:center" *ngIf='noRecords'>NO Records Found</h1>
+<div *ngIf='!noRecords'>
+    <form [formGroup]="probFilterForm" class="form-signin" novalidate autocomplete="on">
+        <div class="row search-form">
+            <div class="col-md-10 col-sm-10 col-sm-10">
+                <div class="form-group filter">
+                    <select class="form-control filter-select input-sm" formControlName="sortBy">
+                        <option value="recent">Most Recent</option>
+                        <option value="old">Most Aged</option>
+                    </select>
+                </div>
+                <div class="form-group filter">
+                    <select class="form-control filter-select input-sm" formControlName="status">
+                        <option value="">All</option>
+                        <option value="pending">Pending</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="progress">In Progress</option>
+                    </select>
+                </div>
+                <div class="form-group filter">
+                    <input type="text" class="form-control filter-textbox input-sm" placeholder="Quick Filter" formControlName="quickFilter">
+                    <span class="glyphicon glyphicon-filter form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 grid-buttton">
+                <a (click)="switch='grid-item'" id="grid" class="btn btn-default btn-sm" id="grid">
+                    <i class="fa fa-fw fa-lg fa-th-large"></i>
+                </a>
+                <a (click)="switch='list-group-item'" id="list" class="btn btn-default btn-sm" id="list">
+                    <i class="fa fa-fw fa-lg fa-th-list"></i>
+                </a>
+            </div>
+        </div>
+    </form>
+    <div id="products" matchHeight="admin-help">
+        <div class="col-md-12 col-sm-12">
+            <div class="item  col-xs-12 col-md-4 col-sm-4 {{switch}}" *ngFor="let problem of problems">
+                <div class="adds-wrapper">
+                    <div class="item-list make-list">
+                        <div class="ppic">
+                            <img class="my-img img-responsive" [src]="serverURL+problem.profile_pic" onError="this.src='assets/img/avatar5.png'" alt="User Pic">
+                        </div>
+                        <div class="body">
+                            <div class="username">
+                                <a href="javascript:void(0);" (click)="selectUser(problem.id)">{{problem.first_name}} {{problem.last_name}}</a> /
+                                <span class="company">
+                                    <a href="javascript:void(0);" >{{problem.company_name}}{{problem.companyName}}</a>
+                                    <!-- (click)="selectCompany(problem.company_name)" -->
+                                </span>
+                            </div>
+                            <span class="message" *ngIf='(problem.is_read == 0 || problem.unread > 0)'>
+                                <span>
+                                    <i class="fa fa-envelope" aria-hidden="true" style="color: #f47721; font-size: 13px;">
+                                    </i>
+                                </span>
+                                <span>Unread</span>
+                            </span>
+                            <div class="helpinfo myclass">
+                                <a [routerLink]='["/admin/help/read",problem.pid]'>
+                                    
+                                    <div class="admin-help">
+                                        <p class="title">
+                                        <b href="#" title="{{problem.subject}}">{{_utils.jsUcfirst(problem.subject)}}</b>
+                                   </p>
+                                    <p>
+                                        <span [innerHTML]="_utils.getFewWords(_utils.stripTags(problem.description),30)"></span>
+                                    </p>
+                                    </div>
+                                    
+                                </a>
+                            </div>
+                            <div class="pull-right created-date">
+                                       
+                                <i class="fa fa-fw fa-clock-o"></i>
+                                {{_utils.toUserFriendlyDate(problem.createdAt)}}
+                          
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+    </div>
+    <div class="database" *ngIf="!finished">
+        Loading more movies...
+    </div>
+    <div *ngIf="finished">
+        End of database... That's all folks!
+    </div>
+</div>
+</ng-template>

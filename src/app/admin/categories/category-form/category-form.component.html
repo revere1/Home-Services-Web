@@ -1,0 +1,71 @@
+<div class="container-fluid">
+<form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+               <b>Add Category</b>
+            </h4>
+        </div>
+        <div class="panel-body">
+    <div class="form-group">
+        <span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em></span>
+      </div>
+<div>
+    <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="form-group">
+      <label for="category_name">Category Name <span style="color:red;">*</span></label>
+      <input id="category_name" type="text" class="form-control" formControlName="category_name">
+      <span *ngIf="formErrors.category_name" class="small text-danger formErrors" [innerHTML]="formErrors.category_name">
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="category_desc">Category Description <span style="color:red;">*</span></label>
+      <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+      <textarea id="category_desc" type="text" class="form-control" formControlName="category_desc"></textarea>
+      <span *ngIf="formErrors.category_desc" class="small text-danger formErrors" [innerHTML]="formErrors.category_desc">
+      </span>
+    </div>
+    <div class="form-group">
+      <label>Choose Category Image:</label>
+      <dropzone class="" [config]="config" [message]="'Click or drag images here to upload'" (success)="onUploadSuccess($event)"
+          (error)="onUploadError($event)" (canceled)="cancelUpload($event)">
+      </dropzone>
+      <div *ngIf="formErrors.files" class="small text-danger formErrors" [innerHTML]="formErrors.files">
+      </div>
+  </div>
+    <div class="form-group">
+      <label for="sector">Status <span style="color:red;">*</span></label>
+      <select id="status" class="form-control" formControlName="status">
+        <option value=null selected>Select</option>
+        <option>active</option>
+        <option>Inactive</option>
+      </select>
+      <div *ngIf="formErrors.status" class="small text-danger formErrors" [innerHTML]="formErrors.status">
+      </div>
+    </div>
+ 
+<br>
+
+    <!-- Submit -->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [attr.disabled]="categoryForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
+        <app-submitting *ngIf="submitting"></app-submitting>
+        <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
+    
+        <!-- API submission error -->
+        <p *ngIf="error" class="mt-3 alert alert-danger">
+          <strong>Error:</strong> There was a problem submitting the form. Please try again.
+        </p>
+    
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+</div>
+</div>
+
+
+</form> 
+</div>

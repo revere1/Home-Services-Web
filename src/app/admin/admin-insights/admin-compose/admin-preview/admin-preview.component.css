@@ -1,0 +1,253 @@
+.ScrollStyle {
+    max-height: 400px;
+    overflow-y: scroll;
+}
+body {
+    background: #ddd;
+    margin-top: 10px;
+}
+.chat-box {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden 
+}
+.chats {
+    padding: 30px 15px 
+}
+.chat-avatar {
+    float: right 
+}
+span.select2-selection.select2-selection--single {
+    border-radius: 0px !important;
+}
+.chat-body {
+    display: block;
+    margin: 10px 30px 0 0;
+    overflow: hidden 
+}
+.chat-body:first-child {
+    margin-top: 0 
+}
+.chat-content {
+    position: relative;
+    display: block;
+    float: right;
+    padding: 8px 15px;
+    margin: 0 20px 10px 0;
+    clear: both;
+    color: #fff;
+    background-color: #62a8ea;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+.chat-content:before {
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 0;
+    height: 0;
+    content: '';
+    border: 5px solid transparent;
+    border-left-color: #62a8ea 
+}
+.chat-content>p:last-child {
+    margin-bottom: 0 
+}
+.chat-content+.chat-content:before {
+    border-color: transparent 
+}
+.chat-time {
+    display: block;
+    margin-top: 8px;
+    color: rgba(255, 255, 255, .6) 
+}
+.chat-left .chat-avatar {
+    float: left 
+}
+.chat-left .chat-body {
+    margin-right: 0;
+    margin-left: 30px 
+}
+.chat-left .chat-content {
+    float: left;
+    margin: 0 0 10px 20px;
+    color: #76838f;
+    background-color: #dfe9ef 
+}
+.chat-left .chat-content:before {
+    right: auto;
+    left: -10px;
+    border-right-color: #dfe9ef;
+    border-left-color: transparent 
+}
+.chat-left .chat-content+.chat-content:before {
+    border-color: transparent 
+}
+.chat-left .chat-time {
+    color: #a3afb7 
+}
+.panel-footer {
+    padding: 0 30px 15px;
+    background-color: transparent;
+    border-top: 1px solid transparent;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.avatar img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 0 none;
+    border-radius: 1000px;
+}
+.chat-avatar .avatar {
+    width: 30px;
+}
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    white-space: nowrap;
+    border-radius: 1000px;
+    vertical-align: bottom;
+}
+.icon-name{
+   padding-left: 7px;
+   padding-right: 4px;
+}
+.assign-form{
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    max-width: 86%;
+    padding-top: 20px;
+}
+.finish{
+    padding-bottom: 60px;
+}
+span.select2.select2-container.select2-container--default.select2-container--above {
+    width: 696.438px !important;
+}
+.form-group.reassign.has-feedback.ng-star-inserted label {
+    margin-top: 5px;
+}
+.assign-head{
+    padding-left: 23px;
+}
+.select2-container .select2-selection--single {
+    height: 34px !important;
+}
+.form-group.reassign.has-feedback.ng-star-inserted {
+    margin-top: 15px;
+    margin-bottom: 55px;
+}
+.select2-container .select2-selection--single {
+    height: 34px;
+}
+.img-blog {
+    top: 31px;
+    position: relative;
+}
+.para {
+    padding-top: 10px;
+    padding-left: 70px;
+}
+.reply {
+    padding-left: 160px !important;
+}
+/* new preview alignment for admin buttons*/
+.summary{
+   border-top: 1px solid #dadada;
+   border-bottom: 1px solid #dadada;
+   padding: 10px 0px 10px 0px;
+   border-bottom-style: dashed;
+   border-top-style: dashed;
+}
+.icon-name{
+   padding-left: 7px;
+   padding-right: 4px;
+}
+.company-name{
+   color: grey;
+}
+.finish.ng-star-inserted{
+   text-align: justify;
+   margin-right: 145px;
+   margin-left: 40px;
+}
+button.btn.btn-primary {
+   margin-left: 25px;
+   border-radius: 0px;
+}
+.username {
+    color: #fbb040;
+}
+.user-headline{
+   font-size: 26px;
+}
+.assign-button{
+    background-color: #fff;
+    position: fixed;
+    bottom: 0px;
+    padding: 12px 3px 15px 0px;
+}
+.main-footer {
+    display: none !important;
+}
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+    right: 26%;
+}
+.btn-primary{
+   background-color: #f1592a !important;
+    border-color: #f1592a !important;
+}
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+    background-color: #24a9a7 !important;
+    border-color: #24a9a7 !important;
+}
+#assign-butt {
+    width: 100% !important;
+}
+/* new preview alignment for admin buttons end here*/
+@media (min-width: 320px) and (max-width: 480px) {
+    .form-group.reassign.has-feedback.ng-star-inserted {
+        display: inline-grid;
+   }
+    .form-group.reassign.has-feedback.ng-star-inserted label {
+        width: 100%;
+   }
+    .select2-container {
+        width: 260px !important;
+   }
+    .well {
+        position: fixed;
+        bottom: -7px;
+        width: 100%;
+   }
+    .finish.ng-star-inserted{
+       margin-right: 0px;
+       margin-left: 0px;
+   }
+    .reply {
+        padding-left: 70px !important;
+   }
+    #assign-butt span.select2.select2-container.select2-container--default.select2-container--focus {
+        width: 400px !important;
+   }
+    .assign{
+        width: 100%;
+   }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .finish.ng-star-inserted{
+       margin-right: 235px;
+   }
+}

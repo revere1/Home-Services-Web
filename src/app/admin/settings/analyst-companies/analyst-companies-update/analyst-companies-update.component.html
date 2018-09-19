@@ -1,0 +1,6 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+      <!-- Edit event form -->
+<app-analyst-companies-form  [event]="company"></app-analyst-companies-form> 
+</ng-template>

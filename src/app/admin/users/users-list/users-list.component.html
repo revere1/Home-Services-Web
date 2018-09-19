@@ -1,0 +1,34 @@
+<button    class="btn btn-primary pull-right" [routerLink]="['/admin/users/create']">Create</button>
+<!-- <button   class="btn btn-success pull-right margin-r10"  (click)="download()">Export</button> -->
+
+<br><br>
+<div class="table-responsive">
+
+<table datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered">
+    <thead >
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Created On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.user_name}}</td>
+        <td>{{user.user_email}}</td>
+        <td>{{user.status?'Active':"Inactive"}}</td>
+        <td>{{user.createdAt | date:'dd-MMM-yyyy hh:mm:ss a'}}</td>
+        <td>
+            <a [routerLink]="['/admin/users/view/',user.id]"><i class="fa fa-eye"></i></a> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a href="javascript:void(0)" (click)="deletesUser(user.id)"><i class="fa fa-trash"></i></a> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a [routerLink]="['/admin/users/update',user.id]"><i class="fa fa-pencil"></i></a> 
+        </td>
+      </tr>
+      <tr *ngIf="users?.length == 0">
+        <td colspan="5" style="text-align: center;" class="no-data-available">No users available.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>

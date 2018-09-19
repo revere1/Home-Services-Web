@@ -1,0 +1,33 @@
+<button    class="btn btn-primary pull-right" [routerLink]="['/admin/countries/create']">Create</button>
+<button   class="btn btn-success pull-right margin-r10"  (click)="download()">Export</button>
+
+<br><br>
+<div class="table-responsive">
+<table datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <!-- <th>Created By</th>
+        <th>Updated By</th> -->
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let country of countries">
+        <td>{{ country.name }}</td>
+        <td>{{ country.status }}</td>
+        <!-- <td>{{ country.createdBy }}</td>
+        <td>{{ country.updatedBy }}</td> -->
+        <td>
+            <a (click)="deleteCountry(country.id)" routerLink="/admin/countries"><i class="fa fa-trash"></i></a> /
+            <a [routerLink]="['/admin/countries/update',country.id]"><i class="fa fa-pencil"></i></a> 
+        </td>
+      </tr>
+      <tr *ngIf="countries?.length == 0">
+        <td colspan="3" class="no-data-available">No data!</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+<router-outlet></router-outlet>

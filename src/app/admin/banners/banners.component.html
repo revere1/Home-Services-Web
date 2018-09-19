@@ -1,0 +1,106 @@
+
+<br><br>
+<a href="#" data-toggle="modal" style="float: right;margin-right: 100px;" class="btn btn-primary" data-target="#banner_model">Add Banner</a>
+
+
+<div id="banner_model" class="modal fade" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" (click)='resetForm()' class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Add Banner</h4>
+          </div>
+    
+       <form [formGroup]="bannerForm" (ngSubmit)="saveBanner()">
+         <div class="modal-body">
+          <div class="form-group">
+            <label>Banner Image:</label>
+            <dropzone class="" [config]="config" 
+                               [message]="'Click or drag images here to upload'" 
+                               (success)="onUploadSuccess($event)"
+                               (error)="onUploadError($event)" 
+                               (canceled)="cancelUpload($event)"
+                               >
+            </dropzone>  
+            <div class="small text-danger">
+              {{file_error}}
+            </div>        
+            <!-- <div *ngIf="bannerForm.controls.banner.hasError('required') && bannerForm.controls.banner.touched" class="small text-danger" >Upload Banner</div> -->
+
+            
+
+        </div>
+        <div class="form-group">          
+          <label for="sector">Banner Type:</label>
+          <label class="radio-inline"> <input type="radio" formControlName="btype" name="btype" value="1" (change)="bannerType('1')">Category</label>
+          <label class="radio-inline"> <input type="radio" formControlName="btype" name="btype" value="2" (change)="bannerType('2')">Product</label>          
+          <div *ngIf="bannerForm.controls.btype.hasError('required') && bannerForm.controls.btype.touched" class="small text-danger" >Select Banner Type</div>
+
+        </div>
+        <div class="form-group">
+          <label for="sector">Select {{btype}}:</label>
+          <select name="btype_id" class="form-control" formControlName="btype_id" > 
+            <option value=""> Select {{btype}}</option>
+            <option *ngFor="let btype of btypes;" value="{{btype.id}}">{{btype.bname}}</option>
+          </select>
+          <div *ngIf="bannerForm.controls.btype_id.hasError('required') && 
+                      bannerForm.controls.btype_id.touched" class="small text-danger" >
+                      Select banner type cat/prod</div>
+
+        </div>
+          <div class="form-group">
+            <label for="sector">Status <span style="color:red;">*</span></label>
+            <select name="status" class="form-control" formControlName="status">
+              <option value=""> Select status</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+            <div *ngIf="bannerForm.controls.status.hasError('required') && bannerForm.controls.status.touched" class="small text-danger" >Select status</div>
+          </div>
+         </div>
+          <div class="modal-footer">
+              <button type="submit" [disabled]="!bannerForm.valid || !festatus" class="btn btn-primary">Add</button> &nbsp;&nbsp;&nbsp;
+              <button type="reset" class="btn btn-danger">Reset</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+
+<br>
+<br>
+<div class="table-responsive">
+
+  <table datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 330px">Banner</th>
+        <th style="width: 80px">Link To</th>       
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let banner of banners">
+        <td>
+          <img class="img-responsive" src="{{serverURL+banner.banner}}" alt="Banner">
+         
+        </td>
+        <!-- *ngIf="banner.btype==1" -->
+        <td >{{banner.btype_id}}({{banner.btype ==1? 'Category':'Product'}})</td>
+        <td>{{banner.status?'Active':'Inactive'}}</td>
+        <td>
+          <a (click)="deleteBanner(banner.id)">
+            <i class="fa fa-trash"></i>
+          </a> /
+          <a (click)='editBanner(banner.id)' >
+            <i class="fa fa-pencil"></i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="banners?.length == 0">
+        <td colspan="4" class="no-data-available">No banners available</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

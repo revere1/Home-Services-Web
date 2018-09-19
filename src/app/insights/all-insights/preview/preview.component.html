@@ -1,0 +1,195 @@
+<div class="container-fluid">
+  <div class="form-group" *ngIf="finished">
+    <div class="row ">
+      <div [class]="(insightsData?.ticker?.name || Headers.length ) ? 'col-md-9 col-lg-9 col-sm-12' :'col-md-12 col-sm-12'">
+        <div class="col-md-12 col-sm-12 col-xs-12 ">
+          <div class="insight-profile">
+            <div class="company-insight">
+              <div class="company-name" *ngIf="_utils.inArray(insightsData?.type,['In-depth','quick-note'])">
+                <p>{{insightsData?.ticker?.company | titlecase}}</p>
+              </div>
+              <div class="company-name" *ngIf="(insightsData?.type === 'macro-type')">
+                <p>{{insightsData?.sector?.name | titlecase}}</p>
+              </div>
+              <div *ngIf="_utils.inArray(insightsData?.type,['In-depth','quick-note','macro-type'])">
+                <a class="username" href="javascript:void(0);" (click)="selectUser(insightsData?.createdBy)">{{insightsData?.user.first_name}} {{insightsData?.user.last_name}}</a>
+              </div>
+            </div>
+            <div class="company-title" *ngIf="_utils.inArray(insightsData?.type,['In-depth','quick-note'])">
+              <i class="fa fa-book"></i>
+              <span class="icon-name" [innerHTML]="insightsData?.type | titlecase"></span> /
+
+              <span class="icon-title">{{insightsData?.commodity?.name}}</span>
+            </div>
+            <div class="company-title" *ngIf="(insightsData?.type === 'macro-type')">
+              <i class="fa fa-book"></i>
+              <span>{{insightsData?.macro_type | titlecase}}</span> /
+              <span class="icon-title">{{insightsData?.sector?.name}}</span>
+            </div>
+          </div>
+          <div class="share-button">
+            <div class="dropdown">
+              <button type="button" data-toggle="dropdown" class="btn dropbtn">
+                <i class="fa fa-lg fa-share-alt "></i>
+              </button>
+              <ul class="dropdown-menu dropdown-content">
+                <share-buttons [include]="['twitter','google','linkedin','facebook']" [size]="1" [autoSetMeta]="false" [url]="baseURI+'/insights/preview/'+insightsData?.id">
+                </share-buttons>
+              </ul>
+            </div>
+            <button type="button" class="btn" *ngIf="(user)">
+              <a href="javascript:void(0);" (click)="addwatchlist(insightsData?.id,'insight')" data-toggle="tooltip" title="add to watch list!">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </a>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h1 class="user-headline" *ngIf="_utils.inArray(insightsData?.type,['In-depth','quick-note','macro-type'])">
+            <div [innerHTML]="insightsData.headline | titlecase"></div>
+          </h1>
+          <span class="date" *ngIf="viewsCount != 0">
+            <i class="fa fa-fw fa-eye"></i>
+            {{viewsCount}}
+          </span>
+          <span class="date" *ngIf="commentsCount != undefined">
+            <i class="fa fa-fw fa-commenting-o"></i>
+            {{commentsCount}}
+          </span>
+          <span *ngIf="_utils.inArray(insightsData?.type,['In-depth','quick-note','macro-type'])">
+            <i class="fa fa-fw fa-clock-o"></i>{{_utils.toDateString(insightsData.createdAt)}}</span>
+        </div>
+        <div id="data">
+          <div class="col-md-12 col-sm-12 col-xs-12" *ngIf="_utils.inArray(insightsData?.type,['In-depth','quick-note','macro-type'])">
+            <h5 class="summary">Summary</h5>
+            <p class="img-resize" [innerHTML]="insightsData?.summary" *ngIf="user"></p>
+            <div>
+              <p class="img-resize" [innerHTML]="_utils.getFewWords(_utils.stripTags(insightsData?.summary),100)" *ngIf="(!user)"></p>
+              <p class="read">
+                <a *ngIf="(!user)" class="pull-right" href="/auth/login">Read More</a>
+              </p>
+            </div>
+          </div>
+          <div *ngIf="user">
+            <div class="col-md-12 col-sm-12 col-xs-12" *ngIf="_utils.inArray(insightsData?.type,['In-depth'])">
+              <h5 class="summary">Description:</h5>
+              <p class="img-resize" [innerHTML]="insightsData?.description"></p>
+            </div>
+          </div>
+        </div>
+        <span *ngIf="insightsData?.insight_attachements">
+          <p *ngFor="let file of insightsData.insight_attachements">
+            <a download [href]="serverURL+file.path"> {{file.orgName}}</a>
+          </p>
+        </span>
+       
+     
+
+        <div class="post-comments" *ngIf="insightsData ?.status === 'published'">
+          <div class="panel-footer">
+            <div  *ngIf="!isPushed && user">
+                <div *ngIf="user" class="pull-left">
+                    <bar-rating [(rate)]="rating" [max]="5" (rateChange)="clientRating()"></bar-rating>
+                  </div>
+              <button  type="button" class="btn btn-default pull-right" (click)="switchForm(null)">
+                <span>
+                  <i class="fa fa-reply"></i>
+                </span> Comment</button>
+              
+            </div>
+          
+            <app-insights-comments-form *ngIf="showForm[null]" [replyFor]="replyFor" (UpdateReplyId)="replyToUpdate($event)">
+            </app-insights-comments-form>
+ 
+          </div>
+          <div *ngIf="user">
+            <div class="border-attachments" *ngFor="let comment of insightsData1">
+              <div class="profile-comment">
+                <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="right" title="" data-original-title="June Lane">
+                  <img [src]="serverURL+comment.user?.user_profile.profile_pic" onError="this.src='assets/img/avatar5.png'" alt="User Pic">
+                </a>
+                <div class="comment-img">
+                  <a class="">{{comment.user?.first_name}} {{comment.user?.last_name}}</a>
+                  <p [innerHTML]="comment.comment"></p>
+                  <small>{{_utils.toDateString(comment.createdAt)}} </small>
+                </div>
+                <div class="comment-name">
+                  <span *ngFor="let path of comment.insight_comment_attachements">
+                    <i class="fa fa-{{_utils.extIcon(null, path.orgName)}}" title="{{path.orgName}}"></i>
+                  </span>
+                  <br>
+                  <span>
+                    <a href="javascript:void(0);" (click)="switchForm(comment.id)">Reply</a>
+                  </span>
+                </div>
+              </div>
+              <app-insights-comments-form *ngIf="showForm[comment.id]" [replyFor]="replyFor" (UpdateReplyId)="replyToUpdate($event)">
+              </app-insights-comments-form>
+              <app-insights-comments [data]="comment" (UpdateComments)="replyToUpdate($event)"></app-insights-comments>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!submit" style="display: none;">
+          <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="ngxData.data" [gradient]="gradient" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel" [autoScale]="autoScale">
+          </ngx-charts-line-chart>
+        </div>
+        <canvas style="display: none;" id="canvas" width="800" height="800"></canvas>
+      </div>
+      <div class="col-md-3 col-lg-3 col-sm-3 graph">
+        <div class="analyst-graph">
+          <div class="preview-header" *ngIf="(Headers.length != 0)">
+            <h4>Headers</h4>
+          </div>
+          <div *ngIf="Headers.length != 0">
+            <div *ngFor="let  header of Headers;index as i ">
+              <p id="header{{i}}">{{header}}</p>
+            </div>
+          </div>
+          <div *ngIf="insightsData?.ticker?.name">
+            <div *ngIf="(price != undefined)">
+
+              <div class="preview-header">
+                <h4>General Details</h4>
+              </div>
+              <p>Price : {{price}}</p>
+              <p>Market cap : {{insightsData?.ticker?.share_in_issue * price }}(In Millions)</p>
+            </div>
+            <div>
+              <div class="preview-header">
+                <h4>Share Details</h4>
+              </div>
+              <p>Code : {{insightsData?.ticker?.name}}</p>
+              <p>Listing : {{insightsData?.ticker?.listing_exchange}}</p>
+              <p>Shares in issue : {{insightsData?.ticker?.share_in_issue}}</p>
+            </div>
+            <div>
+              <div class="preview-header">
+                <h4>Business Description</h4>
+              </div>
+              <p class="preview-desc" [innerHTML]="_utils.getFewWords(_utils.stripTags(insightsData?.ticker?.about | safeHtml),30)">
+              </p>
+            </div>
+            <div *ngIf="(price != undefined)">
+              <div class="preview-header">
+                <h4>Graph Details</h4>
+              </div>
+              <div class="tab-content no-padding ">
+                <div style="display: none;">
+                  <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="ngxData.data" [gradient]="gradient" [xAxis]="showXAxis"
+                    [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel" [autoScale]="autoScale">
+                  </ngx-charts-line-chart>
+                </div>
+              </div>
+              <div class="tab-content no-padding ">
+                <div id="png-container"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

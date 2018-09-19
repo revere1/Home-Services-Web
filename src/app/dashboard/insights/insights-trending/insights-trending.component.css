@@ -1,0 +1,121 @@
+
+.listrap {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    cursor: default;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#imgwidth{
+    width:28px;
+    cursor: pointer;
+}
+.listrap li {
+    margin: 0;
+    padding: 10px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+button{
+
+    position: absolute; 
+    right: 0px;
+    top:0px;
+}
+
+
+
+
+.myrap:hover .share-button
+{
+  visibility: visible;
+}
+
+.share-button
+{
+  
+      position: absolute;
+      top: 0px;
+      right: 15px;
+      margin-top: 10px;
+      visibility: hidden;
+
+}
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+      display: block;
+}
+.dropdown {
+      position: relative;
+      display: inline;
+}
+
+.dropdown:hover .dropbtn {
+      background-color: #dddddd;
+}
+.dropdown-menu
+{
+  min-width: 0px;
+  margin-top: 0px;
+  background-color: #dddddd;
+  text-align: center;
+  margin-top: 10px;
+}
+.dropdown-menu>li>a>.fa
+{
+  padding-left: 5px;
+}
+.dropdown-menu>li>a
+{
+  padding: 0px 8px;
+  background-color: #dddddd;
+}
+.dropdown-menu>li>
+{
+  padding: 0px 8px;
+  background-color: #dddddd;
+}
+.dropdown-menu>li>a:hover {
+      background-color: #dddddd;
+}

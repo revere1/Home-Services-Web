@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+      <ul class="listrap" *ngFor="let trendingInsight of trendingInsights">
+        <li>
+          <div class="col-md-12">
+            <div class="col-md-1">
+              <img id="imgwidth" title="{{trendingInsight.user.first_name | titlecase}} {{trendingInsight.user.last_name | titlecase}}" [src]="serverURL+trendingInsight.user.user_profile.profile_pic" onError="this.src='assets/img/avatar5.png'"
+                class="img-square" />
+            </div>
+            <div class="col-md-10">
+              <strong>{{trendingInsight.headline}}</strong><br>
+              <span class="date">
+                <small><i class="fa fa-fw fa-clock-o "></i></small>
+                <small>{{_utils.toDateString(trendingInsight.createdAt)}}</small>
+              </span>
+            </div>
+          </div>
+        </li><hr>
+      </ul>
+    </div>
+  </div>

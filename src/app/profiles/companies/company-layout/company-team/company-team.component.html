@@ -1,0 +1,11 @@
+<div class="company-team">
+  <div class="team" *ngFor="let user of users">
+    <div class="team-img">
+      <img class="img-responsive" [src]="serverURL+user.user_profile.profile_pic" onError="this.src='assets/img/avatar5.png'" alt="User Pic">
+    </div>
+    <div class="team-desc">
+      <a  href="javascript:void(0);" (click)="selectUser(user.id)">{{user.first_name | titlecase}} {{user.last_name | titlecase}}e</a>
+      <div class="mem-name">{{user.user_profile.company_name}}</div>
+    </div>
+  </div>
+</div>

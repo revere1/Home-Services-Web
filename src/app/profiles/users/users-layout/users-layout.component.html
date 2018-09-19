@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="banner">
+            <div class="banner-image">
+                <img class="img-responsive" [src]="serverURL+user?.profile_pic" onError="this.src='assets/img/avatar5.png'" alt="User Pic">
+            </div>
+        </div>
+        <div class="banner-info">
+            <div class="material-equality">
+                <h4>{{user?.first_name}} {{user?.last_name}}</h4>
+                <p>
+                <!-- Global Commodities & Equity Analyst • -->
+                <a routerLink='//company/{{user?.companyName}}'>{{user?.companyName | titlecase }}</a>
+                </p>
+            </div>
+            <span class="material">Material Energies</span>
+            <span class="material">Equality</span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-2">
+        <div class="messages">
+            <button class="btn">
+                <i class="fa fa-fw fa-comment-o btn__icon-left"></i>
+                <a [routerLink]="role ?['/'+role.toLowerCase()+'/messages/create/'+user?.id]:['/auth/login']">Message</a>
+            </button>
+            <button class="btn" (click)="addFollowers(user.id)">
+                <i class="fa fa-rss btn__icon-left"></i> Follow</button>
+            <div class="insigh-views">
+                <span class="insig">
+                    <span class="">{{insCount}}</span>
+                    <span class="insights">Insights</span>
+                </span>
+                <span class="insig">
+                    <span class="">{{viewCount}}</span>
+                    <span class="insights">Views</span>
+                </span>
+                <span class="insig">
+                    <span class="">{{followersCount}}</span>
+                    <span class="insights">Followers</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 col-sm-12 col-xs-12">
+        <div class="profile-tabs">
+            <div class="my-tabs">
+                <ul id="tabs" class="nav nav-tabs   user user-tabs" data-tabs="tabs">
+                    <li class="active">
+                        <a href="#overview" data-toggle="tab">Overview</a>
+                    </li>
+                    <li>
+                        <a href="#about" data-toggle="tab">
+                            <a [routerLink]="['about']">About</a>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#statistcs" data-toggle="tab">
+                            <a [routerLink]="['statistics']">Statistcs</a>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#insights" data-toggle="tab">
+                            <a [routerLink]="['insights']">Insights</a>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="my-tab-content" class="tab-content">
+            <div class="tab-pane" id="about">
+                <app-users-about></app-users-about>
+            </div>
+            <div class="tab-pane" id="insights">
+                <app-users-insights></app-users-insights>
+            </div>
+            <div class="tab-pane" id="statistcs">
+                <div class="container-fluid">
+                    <app-users-statistics></app-users-statistics>
+                </div>
+            </div>
+            <div class="tab-pane active" id="overview">
+                <app-users-overview></app-users-overview>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

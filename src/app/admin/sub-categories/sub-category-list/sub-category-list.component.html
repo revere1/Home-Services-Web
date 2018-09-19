@@ -1,0 +1,42 @@
+<button class="btn btn-primary pull-right" [routerLink]="['/admin/sub-categories/create']">Create</button>
+<button class="btn btn-success pull-right margin-r10" (click)="download()">Export</button>
+<br>
+<br>
+<div class="table-responsive">
+
+  <table datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered">
+    <thead>
+      <tr>
+        <th>Subcategory Image</th>
+        <th>Category</th>
+        <th>SubCategory Name</th>
+        <th>Status</th>
+        <th>Created On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let subcategory of subcategories">
+        <td>
+          <img class="img-responsive" src="{{serverURL+subcategory.path}}" style="height: 80px;width: 80px;" onError="this.src='assets/img/no-image-available.jpg'" alt="User Pic">
+          <!-- onError="this.src='assets/img/epoojastore-in-logo.png'" -->
+        </td>
+        <td>{{subcategory['category.category_name'] }}</td>
+        <td>{{subcategory.subcategory_name }}</td>
+        <td>{{subcategory.status }}</td>
+        <td>{{subcategory.createdAt | date:'dd-MMM-yyyy hh:mm:ss a'}}</td>
+        <td>
+          <a (click)="deleteSubSector(subcategory.id)">
+            <i class="fa fa-trash"></i>
+          </a> /
+          <a [routerLink]="['/admin/sub-categories/update',subcategory.id]">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="subcategories?.length == 0">
+        <td colspan="3" class="no-data-available">No data!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

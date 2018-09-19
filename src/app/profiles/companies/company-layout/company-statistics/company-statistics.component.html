@@ -1,0 +1,40 @@
+
+ <div class="row">
+    <div class="col-md-6">
+      <div *ngIf="submitting">
+      <ngx-charts-pie-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="single"
+      [legend]="showLegend"
+      [legendTitle]="legendTitle"
+      [explodeSlices]="explodeSlices"
+      [labels]="showLabels"
+      [doughnut]="doughnut"
+      [arcWidth]="arcWidth"
+      [gradient]="gradient"
+      [tooltipDisabled]="tooltipDisabled"
+      [tooltipText]="pieTooltipText">
+    </ngx-charts-pie-chart>
+  </div>
+  </div>
+  <div class="col-md-6">
+  <div *ngIf="submit">
+    <ngx-charts-pie-chart
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="multi"
+    [legend]="showLegend"
+    [legendTitle]="legendTitle"
+    [explodeSlices]="explodeSlices"
+    [labels]="showLabels"
+    [doughnut]="doughnut"
+    [arcWidth]="arcWidth"
+    [gradient]="gradient"
+    [tooltipDisabled]="tooltipDisabled"
+    [tooltipText]="pieTooltipText">
+  </ngx-charts-pie-chart>
+  </div>
+  </div>
+  </div>
+  

@@ -1,0 +1,133 @@
+<app-loading *ngIf="loading; else dataBlock"></app-loading>
+<ng-template #dataBlock>
+<h1 style="text-align:center" *ngIf='noRecords'>NO Records Found</h1>
+<div *ngIf='!noRecords'>
+    <form [formGroup]="probFilterForm" class="form-signin" novalidate autocomplete="on">
+        <div class="row search-form">
+            <div class="col-md-10 col-sm-10 col-sm-10">
+                <div class="form-group filter">
+                    <select class="form-control filter-select input-sm" formControlName="sortBy">
+                        <option value="recent">Most Recent</option>
+                        <option value="old">Most Aged</option>
+                    </select>
+                </div>
+                <div class="form-group filter">
+                    <select class="form-control filter-select input-sm" formControlName="commodityId">
+                        <option value="">All</option>
+                        <option *ngFor="let commodity of commodities" [value]="commodity.id">{{commodity.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group filter">
+                    <input type="text" class="form-control filter-textbox input-sm" placeholder="Quick Filter" formControlName="quickFilter">
+                    <span class="glyphicon glyphicon-filter form-control-feedback"></span>
+                </div>
+            </div>
+            <!-- <div class="col-md-2 col-sm-2 col-xs-2 grid-buttton">
+                <a (click)="switch='grid-item'" id="grid" class="btn btn-default btn-sm" id="grid">
+                    <i class="fa fa-fw fa-lg fa-th-large"></i>
+                </a>
+                <a (click)="switch='list-group-item'" id="list" class="btn btn-default btn-sm" id="list">
+                    <i class="fa fa-fw fa-lg fa-th-list"></i>
+                </a>
+            </div> -->
+        </div>
+    </form>
+    <div id="products" matchHeight="desc">
+       
+            <div class="item  col-xs-12 col-md-4 col-sm-4 {{switch}}" *ngFor="let insight of insights">
+                <div class="adds-wrapper">
+                    <div class="item-list make-list">
+                        <div class="ppic">
+                            <img class="my-img img-responsive" [src]="serverURL+insight['user.user_profile.profile_pic']" onError="this.src='assets/img/avatar5.png'"
+                                alt="User Pic">
+                        </div>
+                        <div class="body">                            
+                                <div class="company">                                   
+                                    <!-- <a href="javascript:void(0);"  title="{{insight['ticker.name']}}" (click)="selectTicker(insight.tickerId)">{{insight['ticker.name'] | titlecase}}    
+                                    <a href="javascript:void(0);" (click)="addwatchlist(insight.tickerId,'ticker')" data-toggle="tooltip" title="Add to watch list!">
+                                        <span *ngIf="(insight?.type != 'macro-type') && user" class="glyphicon glyphicon-plus-sign"></span>
+                                    </a>
+                                    </a>
+                                    <a *ngIf="(insight?.type === 'macro-type')" title="{{insight['sector.name']}}">
+                                        {{insight['sector.name'] | titlecase}}
+                                    </a>
+                                    <a href="javascript:void(0);" (click)="addwatchlist(insight.sectorId,'sector')" data-toggle="tooltip" title="Add to watch list!">
+                                        <span *ngIf="(insight?.type === 'macro-type') && user" class="glyphicon glyphicon-plus-sign"></span>
+                                    </a> -->
+                                    <a *ngIf="(insight?.type === 'macro-type')" title="{{insight['currency.name']}}">
+                                        {{insight['currency.name'] | titlecase}}
+                                    </a>
+                                    <a href="javascript:void(0);" (click)="addwatchlist(insight.currencyId,'currency')" data-toggle="tooltip" title="Add to watch list!">
+                                            <span *ngIf="(insight?.type === 'macro-type') && user" class="glyphicon glyphicon-plus-sign"></span>
+                                    </a> 
+                                </div>
+                                <div class="username">
+                                <a href="javascript:void(0);" *ngIf='(switch === "grid-item")'(click)="selectUser(insight.userId)">{{insight['user.Name']}}/</a>
+                                <span class="icon-title">{{insight['commodity.name']}}</span>
+                                <a *ngIf="(insight?.type === 'macro-type')" href="javascript:void(0);" title="{{insight.macro_type}}">{{insight.macro_type| titlecase }}</a>
+                                <a href="javascript:void(0);" (click)="addwatchlist(insight.userId,'analyst')" data-toggle="tooltip" title="Add to watch list!">
+                                    <span *ngIf="user" class="glyphicon glyphicon-plus-sign"></span>
+                                </a>
+                            </div>
+                            <div class="helpinfo myclass">
+                                <div class="help-icon">
+                                    <span class="head-icon">
+                                        <i class="fa fa-bolt" *ngIf="insight.type == 'quick-note'"></i>
+                                        <i class="fa fa-book" *ngIf="insight.type == 'In-depth'"></i>
+                                        <i class="fa fa-bolt" *ngIf="insight.type == 'macro-type'"></i>
+                                    </span>
+                                </div>
+                                <div class="desc">
+                                        <p class="title"><a routerLink="/insights/preview/{{insight.id}}">
+                                            <b title="{{insight.headline}}">{{insight.headline | titlecase }}</b></a></p>
+                                            <p>
+                                                <span [innerHTML]="_utils.getFewWords(_utils.stripTags(insight.summary),30)"></span>
+                                            </p>
+                                        
+                                    </div>
+                                <div class="created-date">
+                                    <div class="date" *ngIf="insight['insights_view.viewCount'] != 0">
+                                        <i class="fa fa-fw fa-eye"></i>
+                                        {{insight['insights_view.viewCount']}}
+                                    </div>
+                                    <div class="date" *ngIf="insight['insight_comment.commentCount'] != 0">
+                                        <i class="fa fa-fw fa-commenting-o"></i>
+                                        {{insight['insight_comment.commentCount']}}
+                                    </div>
+                                    <div class="date pull-right">
+                                        <i class="fa fa-fw fa-clock-o"></i>
+                                        {{_utils.toUserFriendlyDate(insight.createdAt)}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="share-button">
+                            <div class="dropdown">
+                                <button type="button" data-toggle="dropdown" class="btn dropbtn">
+                                    <i class="fa fa-lg fa-share-alt "></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-content">
+                                    <share-buttons [include]="['twitter','google','linkedin','facebook']" [size]="1" [autoSetMeta]="false" [url]="baseURI+'/insights/preview/'+insight.id">
+                                    </share-buttons>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn" *ngIf="(user)">
+                                <a href="javascript:void(0);" (click)="addwatchlist(insight.id,'insight')" data-toggle="tooltip" title="add to watch list!">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                </a>
+                            </button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+    </div>
+    <div *ngIf="!finished">
+        Loading more movies...
+    </div>
+    <div class="end" *ngIf="finished">
+        End of database... That's all folks!
+    </div>
+</div>
+</ng-template>

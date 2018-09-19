@@ -1,0 +1,56 @@
+<header class="main-header">
+  <!-- Logo -->
+  <a href="index2.html" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini">
+      <img src="assets/img/revere-icon-logo.png" alt="" />
+    </span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg">
+      <img src="assets/img/revere-logo.png" alt="logo" />
+    </span>
+  </a>
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <!-- Messages: style can be found in dropdown.less-->
+        <li class="user-header" style="padding: 7px;">
+          <div class="pull-right">
+            <a [routerLink]="['/auth/logout']" class="btn btn-default btn-flat">Sign out</a>
+          </div>
+        </li>
+        <!-- User Account: style can be found in dropdown.less -->
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div *ngIf="!loading">
+  <div class="card col-md-12 col-lg-12">
+    <div class="panel-heading">
+      <h3 class="panel-title">User Profile
+        <span style="color:red;">*</span>
+      </h3>
+    </div>
+    <div class="col-md-3 col-lg-3">
+      <div class="profile-img">
+        <img class="img-fluid img-circle " [src]="dynamicImg" onError="this.src='assets/img/avatar5.png'" alt="User Pic">
+      </div>
+      <!-- <img class="img-fluid img-circle " [appDynamicImg]="dynamicImg" defaultImg="assets/img/avatar5.png" alt="User Pic" /> -->
+      <br>
+      <br>
+      <div class="card-body">
+        <input type="file" #fileInput (change)="fileChangeEvent($event)" name="profile_pic" accept="image/*" placeholder="Upload file..."
+        />
+      </div>
+    </div>
+    <div class=" col-md-9 col-lg-9" *ngIf="edit1">
+      <app-edit-profile [event]="userprofile" (edit)='onEdit($event)'></app-edit-profile>
+    </div>
+  </div>
+</div>

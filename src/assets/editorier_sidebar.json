@@ -1,0 +1,96 @@
+[
+    {
+        "id": 1,
+        "name": {
+            "en": "Home",
+            "de": "DE_Home"
+        },
+        "routerLink": "/editorier/home",
+        "icon": "fa fa-fw fa-home"
+    },
+    {
+        "id": 2,
+        "name": {
+            "en": "Messages",
+            "de": "DE_Messages"
+        },
+        "routerLink": "/editorier/messages/read/",
+        "icon": "fa-dashboard"
+    },
+    {
+        "id": 3,
+        "name": {
+            "en": "Help",
+            "de": "DE_Help"
+        },
+        "routerLink": "/editorier/help",
+        "icon": "fa-users"
+    },
+    {
+        "id": 4,
+        "name": {
+            "en": "Insights",
+            "de": "DE_Insights"
+        },
+        "routerLink": false,
+        "icon": "fa fa-fw fa-newspaper-o",
+        "sublinks": [
+            {
+                "id": 1,
+                "name": {
+                    "en": "All insights",
+                    "de": "DE_All insights"
+                },
+                "routerLink": "/insights",
+                "icon": "fa fa-fw fa-newspaper-o"
+            },
+            {
+                "id": 2,
+                "name": {
+                    "en": "Unpublish-Insights",
+                    "de": "DE_Unpublish-Insights"
+                },
+                "routerLink": "/editorier/insights/un-publish",
+                "icon": "fa fa-fw fa-newspaper-o"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": {
+            "en": "Settings",
+            "de": "DE_Settings"
+        },
+        "routerLink": false,
+        "icon": "fa-gear",
+        "sublinks": [
+            {
+                "id": 1,
+                "name": {
+                    "en": "Profile",
+                    "de": "DE_Profile"
+                },
+                "routerLink": "/editorier/settings/profile",
+                "icon": "fa-users"
+            },
+            {
+                "id": 2,
+                "name": {
+                    "en": "Change Password",
+                    "de": "Change Password"
+                },
+                "routerLink": "/editorier/settings/change-password",
+                "icon": "fa-pencil"
+            },
+            {
+                "id": 3,
+                "name": {
+                    "en": "Notifications",
+                    "de": "DE_Notifications"
+                },
+                "routerLink": "/editorier/settings/notifications",
+                "icon": "fa-users"
+            }
+        ]
+    }
+]

@@ -1,0 +1,225 @@
+
+.banner{background-color: black;height: 185px;}
+.banner-image
+{
+left: 25px;
+position: absolute;
+top: 25px
+}
+.banner-image img {
+width: 200px;
+height: 200px;
+}
+
+.banner-info{
+position: absolute;
+padding-left: 250px;
+padding-right: 15px;
+top: auto;
+bottom: 0;
+color: white;
+left: 0;
+right: 0;
+box-sizing: inherit;
+margin-bottom: 50px;
+
+}
+.col-md-12.col-sm-12.col-xs-12 {
+bottom: 56px;
+}
+.material
+{
+border-radius: 10px solid #fff;
+border: 1px solid #ccc;
+border-radius: 2px;
+display: inline-block;
+font-weight: 300;
+padding: 2px 8px;
+margin-bottom: 10px;
+}
+
+.messages {
+float: left;
+margin-left: 25px;
+width: 200px;
+color: #fff;
+font-weight: 500;
+/* margin-top: 60px; */
+
+}
+.nav>li>a {
+position: relative;
+display: block;
+padding: 2px 20px 0px 20px!important;
+}
+
+.btn {
+display: block !important;
+margin-bottom: 5px;
+right: 16px;
+position: relative;
+width: 198px;
+      background-color: #fbb040;
+
+
+}
+a.aboutmore {
+float: right;
+}
+.tab-content>.active {
+display: block;
+
+}
+.insig {
+display: block;
+color: black;
+padding-top: 14px;
+text-align: center;
+font-size: 13px;
+padding: 5px;
+margin-top: 10px;
+}
+.insigh-views{
+display: -webkit-inline-box;
+}
+.insights
+{
+display:block
+}
+.profile-table td
+{
+padding: 12px;
+}
+.tab-pane li
+{
+border-bottom: 1px solid #ebebeb;
+height: 90px;
+list-style-type: none;
+}
+.profile-tabs{
+position: relative;
+bottom: 80px;
+      
+}
+
+a {
+color: #00aeef;
+}
+
+@media (min-width:320px) and (max-width:480px){
+.nav>li>a {
+position: relative;
+display: block;
+padding: 5px 6px 0px 7px !important;
+}
+.content {
+min-height: 250px; 
+padding: 0px; 
+margin-right: auto; 
+margin-left: auto; 
+padding-left: 0px; 
+padding-right: 0px; 
+}
+.banner-image img {
+width: 90px;
+height: auto;
+}
+.banner-info {
+position: absolute;
+padding-left: 132px;
+padding-right: 4px;
+top: 36px;
+color: white;
+left: 0;
+right: 0;
+box-sizing: inherit;
+font-size: 12px;
+padding-bottom: 13px;
+}
+.tab-content .active{
+margin: 0px 0px 0px 0px !important;
+}
+
+.h4, h4 {
+font-size: 15px !important;
+}
+.material-equality{
+margin-bottom: -5px;
+}
+.btn{
+width: 245px;
+      margin-left: 15px;
+display: block;
+}
+.messages {
+float: left;
+margin-left: 19px;
+width: 90%;
+color: #fff;
+font-weight: 500;
+text-align: center;
+margin-top: -43px !important;
+}
+.profile-tabs{
+position: relative;
+bottom: 0px;
+left: 0;
+}
+.tab-pane li {
+border-bottom: 1px solid #ebebeb;
+height: auto;
+}
+
+
+}
+@media (min-width: 481px) and (max-width: 767px) {
+.profile-tabs {
+position: relative;
+bottom: 0px; 
+}
+
+}
+@media (min-width: 768px) and (max-width: 1024px)
+{
+.banner-image img {
+width: 150px;
+height: 149px;
+
+}
+.banner-info {
+padding-left: 200px;
+font-size: 15px;
+
+}
+.home-content {
+padding-top: 150px;
+}
+.profile-tabs {
+position: relative;
+bottom: 0px;
+}
+.messages {
+float: left;
+margin-left: 18px;
+width: 200px;
+color: #fff;
+font-weight: 500;
+margin-top: -42px;
+}
+.tab-content .active{
+margin: 0px 0px 0px 0px !important;
+}
+
+.btn
+{
+margin: -3px 0px 0px 165px;width: 211px;
+}
+.insigh-views 
+{
+margin-left: 143px;
+}
+}
+
+
+
+
