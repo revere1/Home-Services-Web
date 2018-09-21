@@ -11,7 +11,7 @@
     {
         "id": 2,
         "name": {
-            "en": "Categories",
+            "en": "Services",
             "de": "DE_Categories"
         },
         "routerLink": "/admin/categories",
@@ -20,7 +20,7 @@
     {
         "id": 3,
         "name": {
-            "en": "Sub-Categories",
+            "en": "Sub-Services",
             "de": "DE_Sub-Categories"
         },
         "routerLink": "/admin/sub-categories",

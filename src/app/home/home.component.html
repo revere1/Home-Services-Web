@@ -24,7 +24,43 @@
           <a data-scroll href="#home">Home</a>
         </li>
         <li>
-          <a  routerLink="/auth/login">Login</a>
+          <a routerLink="/auth/login">Login</a>
+        </li>
+        <li>
+          <a type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
+            data-keyboard="false" (click)="create();">
+            Sign up</a>
+          <div id="myModal1" class="modal fade" *ngIf="createform">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Sign Up</h4>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="signupForm" (ngSubmit)="saveUsers()">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="title">MOBILE NUMBER</label>
+                        <img src ="assets/img/india-flag-icon-16.png"> +91
+                        <input id="title" type="text" class="form-control" formControlName="mobile">
+                        <div class="text-danger" *ngIf="signupForm.get('mobile').dirty && signupForm.get('mobile').invalid">
+                            Enter valid 10 digit mobile number
+                        </div>
+                      </div>
+                      <div class="form-group" style="padding-left:5%">
+                        <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br><br>
         </li>
       </ul>
     </div>

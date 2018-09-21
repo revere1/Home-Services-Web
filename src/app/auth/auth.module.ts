@@ -18,6 +18,8 @@ import { StatesService } from '../services/states.service';
 import { CountriesService } from '../services/countries.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CompanyService } from '../services/company.service';
+import { SignupComponent } from './signup/signup.component';
+import { MacroTypeService } from '../services/macrotype.service';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { CompanyService } from '../services/company.service';
     AuthLayoutComponent,
     LogoutComponent,
     UpdateProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    SignupComponent
   ],
   providers: [
     ScriptService,
@@ -46,7 +49,8 @@ import { CompanyService } from '../services/company.service';
     SubcategoriesService,
     StatesService,
     CountriesService,
-    CompanyService
+    CompanyService,
+    MacroTypeService,
     // LockerFormService,
     // LockersService,
     // CommodityService,

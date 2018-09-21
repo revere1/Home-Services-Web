@@ -43,6 +43,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxUIModule } from '@swimlane/ngx-ui';
 import { InsightService } from './services/insights/insight.service';
 import { MyWatchListComponent } from './my-watch-list/my-watch-list.component';
+import { MacroTypeService } from './services/macrotype.service';
+import { NguCarouselModule } from './carousel/ngu-carousel.module';
 
 @NgModule({
   declarations: [
@@ -72,10 +74,11 @@ import { MyWatchListComponent } from './my-watch-list/my-watch-list.component';
     ShareButtonsModule.forRoot(),
     MatAutocompleteModule,
     MatInputModule,
-    MatSelectModule    
+    MatSelectModule,
+    NguCarouselModule    
   ],
   providers: [AuthGuard,
-    RoleGuard, AuthService, ContactUsFormService, UserService, ComposeService, UtilsService, DatePipe, CommodityService, ScriptService,
+    RoleGuard, AuthService, ContactUsFormService,MacroTypeService, UserService, ComposeService, UtilsService, DatePipe, CommodityService, ScriptService,
     NotificationService, MessagesService, HelpService, LockersService, HelpFormService,InsightService,
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     FileDropDirective,

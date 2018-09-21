@@ -1,181 +1,157 @@
-
-import { Component, OnInit, Input, OnDestroy, ViewContainerRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
-import { Router } from '@angular/router';
+import { Component, OnInit,ViewEncapsulation, OnDestroy, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl, NgForm } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr';
-import { ContactUsModel, FormContactUsModel } from '../models/contact_us.model';
-import { ContactUsFormService } from '../services/contact_us/contact-us-form.service';
-import { UserService } from '../services/user.service';
-declare var $: any;
+import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Angular2Csv } from 'angular2-csv';
+import { Subject } from 'rxjs/Subject';
+import { DataTableDirective } from 'angular-datatables';
+import { UtilsService } from '../services/utils.service';
+import { MacroTypeService } from '../services/macrotype.service';
+import { BreadcrumbsService, IBreadcrumb } from 'ng2-breadcrumbs';
+
+
+export class UsersModel {
+  constructor(
+    public mobile: string,
+    public id?: number) {
+  }
+}
+export class UsersFormModel {
+  constructor(public mobile: string) {
+
+  }
+}
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,AfterViewInit {
+  
+  @Input() event: UsersModel;
+  createform: boolean = false;
+  formEvent: UsersFormModel;
+  submitEventObj: UsersModel;
+  signupForm: FormGroup;
+  submitEventSub: any;
+  private allItems: {};
+  public dtOptions: DataTables.Settings = {};
+  public error: boolean;
+  private apiEvents = [];
+  public regions: any[];
+  public popupid: number;
+  public regionspopup = [];
+  public bcList: IBreadcrumb[];
+  showModel: boolean = false;
+  dtTrigger: Subject<any> = new Subject();
+  @ViewChild(DataTableDirective) dtElement: DataTableDirective;
 
-  @Input() event: ContactUsModel;
-  contactForm: FormGroup;
-  isEdit: boolean;
-  apiEvents = [];
-  // Model storing initial form values
-  formEvent: FormContactUsModel;
-  // Form validation and disabled logic
-  formErrors: any;
-  formChangeSub: Subscription;
-  id: any;
-  // Form submission
-  submitEventObj: ContactUsModel;
-  submitting: boolean;
-  submitEventSub: Subscription;
-  error: boolean;
-  public sucessMsg:boolean=false;
+  constructor(private fb: FormBuilder,
+    private _macroApi: MacroTypeService,
+    public toastr: ToastsManager,
+    private route: Router,
+    private breadcrumbsService: BreadcrumbsService,
+    private _utils: UtilsService,
+    private http: HttpClient) {
+    this.signupForm = new FormGroup({
+      mobile: new FormControl(),
+    });
+  }
 
-  constructor(
-     vcr: ViewContainerRef,
-     private fb: FormBuilder,
-     private router: Router,
-     private _userapi:UserService,
-     public cf: ContactUsFormService,
-     public toastr: ToastsManager) {
-    this.toastr.setRootViewContainerRef(vcr);
-  }
-  public loadScript(url) {
-    let node = document.createElement('script');
-    node.src = url;
-    node.type = 'text/javascript';
-    document.getElementsByTagName('head')[0].appendChild(node);
-  }
   ngOnInit() {
-    this.formErrors = this.cf.formErrors;
-    this.formEvent = this._setFormEvent();
-    this._buildForm();
+    this.createform = false;
+    this.signupForm = this.fb.group({
+      mobile: ['', Validators.required],
+    });
   }
-  private _buildForm() {
 
-    let validRules = {
-      name: [this.formEvent.name, [
-        Validators.required
-      ]],
-      mobile: [this.formEvent.mobile, [
-        Validators.required
-      ]],
-      email: [this.formEvent.email, 
-        [Validators.required,Validators.email]
-      ],
-      comments: [this.formEvent.comments, [
-        Validators.required
-      ]]
-    };
-    this.contactForm = this.fb.group(validRules);
-    // Subscribe to form value changes
-    let apiEvent = this.formChangeSub = this.contactForm
-      .valueChanges
-      .subscribe(data => this._onValueChanged());
-    (this.apiEvents).push(apiEvent);
-    if (this.isEdit) {
-      const _markDirty = group => {
-        for (const i in group.controls) {
-          if (group.controls.hasOwnProperty(i)) {
-            group.controls[i].markAsDirty();
-          }
-        }
-      };
-      _markDirty(this.contactForm);
-    }
-    this._onValueChanged();
-  }
   private _setFormEvent() {
-    if (!this.isEdit) {
-      // If creating a new event, create new
-      // FormEventModel with default null data
-      return new FormContactUsModel(null, null, null,null);
-    } else {
-      // If editing existing event, create new
-      // FormEventModel from existing data
-      return new FormContactUsModel(
-        this.event.name,
-        this.event.mobile,
-        this.event.email,
-        this.event.comments,
-        this.event ? this.event.id : null
-      );
-    }
-  }
-  private _onValueChanged() {
-
-    if (!this.contactForm) { return; }
-
-    // Check validation and set errors
-    for (const field in this.formErrors) {
-      if (this.formErrors.hasOwnProperty(field)) {
-        this.formErrors[field] = '';
-        this._setErrMsgs(this.contactForm.get(field), this.formErrors, field);
-      }
-    }
-  }
-  _setErrMsgs = (control: AbstractControl, errorsObj: any, field: string) => {
-    if (control && control.dirty && control.invalid) {
-      const messages = this.cf.validationMessages[field];
-      for (const key in control.errors) {
-        if (control.errors.hasOwnProperty(key)) {
-          errorsObj[field] += messages[key] + '<br>';
-        }
-      }
-    }
-  };
-
-  resetForm() {
-    this.contactForm.reset();
-  }
-  private _getSubmitObj() {
-    return new ContactUsModel(
-      this.contactForm.get('name').value,
-      this.contactForm.get('mobile').value,
-      this.contactForm.get('email').value,
-      this.contactForm.get('comments').value,
+    return new UsersFormModel(
+      this.event.mobile
     );
   }
-  private _handleSubmitSuccess(res) {
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  public rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
+
+  private _getSubmitObj() {
+    return new UsersModel(
+      this.signupForm.get('mobile').value
+    );
+  }
+
+  create() {
+    this.createform = true;
+  }
+  private _handleSubmitSuccess1(res, id = 0) {
     this.error = false;
-    this.submitting = false;
-    this.sucessMsg = true;
-    // Redirect to event detail
     if (res.success) {
       this.toastr.success(res.message, 'Success');
+      let pos = this.regions.map(function (e) { return e.id; }).indexOf(id);
+      this.regions.splice(pos, 1);
     }
     else {
       this.toastr.error(res.message, 'Invalid');
     }
   }
-  private _handleSubmitError(err) {
-    this.toastr.error(err.message, 'Error');
-    this.submitting = false;
-    this.error = true;
+
+  modelopen(id) {
+    this.popupid = id;
+    this.regionspopup = [];
+    this.showModel = true;
   }
-  submit() {
-    this.submitting = true;
+
+
+  saveUsers() {
     this.submitEventObj = this._getSubmitObj();
-      let apiEvent = this.submitEventSub = this._userapi
-        .ContactusPostEvent$(this.submitEventObj)
-        .subscribe(
+    this._macroApi
+      .postEvent$(this.submitEventObj, 'region')
+      .subscribe(
         data => {
           this._handleSubmitSuccess(data);
-          this.resetForm();
+          this.rerender();
+          if (data.success) {
+            (this.regions).push(data.data);
+          }
         },
         err => this._handleSubmitError(err)
-        );
-      (this.apiEvents).push(apiEvent);
+      );
   }
 
-  public ngOnDestroy() {
-    if ((this.apiEvents).length) {
-      this.apiEvents.forEach(val => {
-        val.unsubscribe();
-      })
+
+  private _handleSubmitSuccess(res) {
+    if (res.success) {
+      this.toastr.success(res.message, 'Success');
+      let that = this;
+      $(function () {
+        $('button.close').trigger('click');
+        that.showModel = false;
+        that.createform = false;
+      });
+    }
+    else {
+      this.toastr.error(res.message, 'Invalid');
     }
   }
-}
 
+  private _handleSubmitError(err) {
+    this.toastr.error(err.message, 'Error');
+  }
+
+}
